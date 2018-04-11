@@ -1,8 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Class\\Class"
+    "\\packages\\Microsoft.Net.Compilers.2.4.0",
+    "\\packages\\Microsoft.Net.Compilers.2.4.0\\tools"
   ],
-  "SelectedNode": "\\Class",
   "PreviewInSolutionExplorer": false
 }
