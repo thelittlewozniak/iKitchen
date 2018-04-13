@@ -11,23 +11,21 @@ namespace Class
         private static Schedule instance;
         List<DateTime> listAvailableDate;
         List<Order> listDateOrders;
-        public List<DateTime> GetAvailableDate => listAvailableDate;
-        public List<Order> GetOrders => listDateOrders;
+        public List<DateTime> GetSetListDateAvailable { get=>listAvailableDate; set=>listAvailableDate=value; }
+        public List<Order> GetSetListOrder { get=>listDateOrders; set=>listDateOrders=value; }
         public Schedule Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance=new Schedule(null, null);
+                    instance=new Schedule();
                 }
                 return instance;
             }
         }
-        private Schedule(List<DateTime> listAvailanleDate,List<Order> listDateOrders)
+        private Schedule()
         {
-            this.listAvailableDate = listAvailanleDate;
-            this.listDateOrders = listDateOrders;
         }
         public void AddAvailableDate(DateTime date) => listAvailableDate.Add(date);
         public void AddOrders(Order order) => listDateOrders.Add(order);
