@@ -97,7 +97,12 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\POCO\Catalog.cs" />
     <Compile Include="Models\POCO\Comment.cs" />
+    <Compile Include="Models\POCO\Cook.cs" />
+    <Compile Include="Models\POCO\Ingredient.cs" />
+    <Compile Include="Models\POCO\Neighbour.cs" />
+    <Compile Include="Models\POCO\Order.cs" />
     <Compile Include="Models\POCO\Recipe.cs" />
     <Compile Include="Models\POCO\Schedule.cs" />
     <Compile Include="Models\POCO\User.cs" />
