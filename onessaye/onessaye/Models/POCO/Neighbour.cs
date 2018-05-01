@@ -5,9 +5,8 @@ using System.Web;
 
 namespace onessaye.Models.POCO
 {
-    public class Schedule
+    public class Neighbour:User
     {
-        public List<DateTime> ListDate { get; set; }
-        public int QuantityLeft { get; set; }
+        public List<Order> ListOrder { get; set; }
     }
 }

@@ -8,7 +8,8 @@ namespace onessaye.Models.POCO
     public class Recipe
     {
         public string Name { get; set; }
-        public List<Comment> ListComments { get; set; }
         public float SellingPrice { get; set; }
+        public List<Ingredient> ListIngredient { get; set; }
+        public List<Comment> ListComments { get; set; }
     }
 }
