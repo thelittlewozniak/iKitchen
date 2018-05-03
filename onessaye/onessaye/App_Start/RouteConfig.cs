@@ -18,6 +18,15 @@ namespace onessaye
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            //Bisconti Flavian
+            routes.MapRoute(
+                name: "DisplayRecipeForm",
+                url: "Recipe/DisplayRecipeForm/{NbIngredients}",
+                defaults: new { NbIngredients = UrlParameter.Optional});
+
+            routes.MapRoute(
+                name: "RecipeForm",
+                url: "Recipe/DisplayRecipeForm");
         }
     }
 }

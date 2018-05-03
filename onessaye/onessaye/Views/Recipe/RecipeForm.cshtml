@@ -1,0 +1,53 @@
+﻿@{ 
+    int nbi = ViewBag.NbIngredients;
+    int inter = nbi+1;
+    string nbiplus = Convert.ToString(inter);
+}
+<h2>AddRecipe</h2>
+<div>
+    @using (Html.BeginForm("Recipe", "CheckRecipe", "post"))
+    {
+    <fieldset>
+        @Html.Label("name", "Name : ")
+        @Html.TextBox("name", "Name your recipe", new { autofocus = "autofocus", maxlength = 20, size = 20, min = 3 })
+        <br />
+        <h4>List of Ingredients</h4>
+        <table>
+            <tr>
+                <th>Ingredient</th>
+                <th>Amount</th>
+                <th>Unit Price</th>
+            </tr>
+            @for (int i = 0; i < nbi; i++)
+          {
+            <tr>
+                <td>
+                    <input type="text" name="ingredient[@i]" maxlength="15" size="15" min="3" />
+                </td>
+                <td>
+                    <input type="number" name="amount[@i]" maxlength="2" size="2" min="1" />
+                </td>
+                <td>
+                    <input type="text" name="price[@i]" maxlength="5" size="5" min="1" />
+                </td>
+            </tr>
+         }
+        </table>
+        @Html.ActionLink("+Add Ingredient", "DisplayRecipeForm", new { NbIngredients = nbiplus })
+        <br />
+        <table>
+            <tr>
+                <th>Cost price</th>
+                <td>@ViewBag.CostPrice</td>
+            </tr>
+            <tr>
+                <th>Selling price</th>
+                <td>@ViewBag.SellingPrice</td>
+            </tr>
+        </table>
+        <input type="submit" value="Create recipe" />
+        @Html.RouteLink("Reset Form", "RecipeForm")
+    </fieldset>
+    }
+</div>
+
