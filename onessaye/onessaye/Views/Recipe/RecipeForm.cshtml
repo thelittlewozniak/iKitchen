@@ -1,11 +1,11 @@
 ﻿@{ 
     int nbi = ViewBag.NbIngredients;
-    int interplus = nbi + 1;
-    int interminus = nbi - 1;
-    string nbiminus = Convert.ToString(interminus);
-    string nbiplus = Convert.ToString(interplus);
+    var type = new List<SelectListItem> {
+    new SelectListItem { Text = "Appetizer", Value = "1" },
+    new SelectListItem { Text = "Main dish", Value = "2" },
+    new SelectListItem { Text = "Dessert", Value = "3" }};
 }
-<h2>AddRecipe</h2>
+<h2>Create a new recipe</h2>
 <div>
     @using (Html.BeginForm("CheckRecipe", "Recipe", "post"))
     {
@@ -21,7 +21,7 @@
                 <th>Unit Price</th>
             </tr>
             @for (int i = 0; i < nbi; i++)
-          {
+        {
             <tr>
                 <td>
                     <input type="text" name="ingredient[@i]" maxlength="15" size="15" min="3" />
@@ -33,24 +33,27 @@
                     <input type="text" name="price[@i]" maxlength="5" size="5" />
                 </td>
             </tr>
-         }
+    }
         </table>
-        <p>
-            @Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = nbiplus }) @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = nbiminus })</p>
-            <br />
-            <table border="1">
-                <tr>
-                    <th>Cost price</th>
-                    <td>@ViewBag.CostPrice</td>
-                </tr>
-                <tr>
-                    <th>Selling price</th>
-                    <td>@ViewBag.SellingPrice</td>
-                </tr>
-            </table>
-            <input type="submit" value="Create recipe" />
-            @Html.RouteLink("Reset Form", "RecipeForm")
-</fieldset>
+        <p>@Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi+1) }) @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi-1) })</p>
+        <br />
+        <table border="1">
+            <tr>
+                <th>Cost price</th>
+                <td>@ViewBag.CostPrice</td>
+            </tr>
+            <tr>
+                <th>Selling price</th>
+                <td>@ViewBag.SellingPrice</td>
+            </tr>
+        </table>
+        <br />
+        <h4>Select the dish type</h4>
+        @Html.ListBox("type", type)
+        <br />
+        <input type="submit" value="Create recipe" />
+        @Html.RouteLink("Reset Form", "RecipeForm")
+    </fieldset>
     }
 </div>
 
