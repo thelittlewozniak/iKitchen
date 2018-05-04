@@ -24,13 +24,13 @@ namespace onessaye.Controllers
             return View("RecipeForm");
         }
         [HttpPost]
-        public ActionResult CheckRecipe(string name, string[] tabIngredients, string[] tabAmounts, string[]tabPrices)
+        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string>price)
         {
             ViewBag.Name = name;
-            ViewBag.ListIngredients = tabIngredients;
-            ViewBag.ListAmounts = tabAmounts;
-            ViewBag.ListPrices = tabPrices;
-            ViewBag.NbIngredients = tabIngredients.Length;
+            ViewBag.ListIngredients = ingredient;
+            ViewBag.ListAmounts = amount;
+            ViewBag.ListPrices = price;
+            ViewBag.NbIngredients = ingredient.Count;
             return View();
         }
     }
