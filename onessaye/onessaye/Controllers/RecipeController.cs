@@ -24,14 +24,43 @@ namespace onessaye.Controllers
             return View("RecipeForm");
         }
         [HttpPost]
-        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string>price)
+        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string>price, string type)
         {
-            ViewBag.Name = name;
-            ViewBag.ListIngredients = ingredient;
-            ViewBag.ListAmounts = amount;
-            ViewBag.ListPrices = price;
-            ViewBag.NbIngredients = ingredient.Count;
-            return View();
+            //Checking
+            List<string> error = new List<string>();
+            bool ok = true;
+            bool alreadyWrongPrice = false;
+            double inter;
+            foreach (string p in price)
+            {
+                if (!alreadyWrongPrice)
+                {
+                    bool isDouble = double.TryParse(p, out inter);
+                    if (!isDouble || (Convert.ToDouble(p) < 0.10 || Convert.ToDouble(p) > 10 || p is null))
+                    {
+                        ok = false;
+                        error.Add("The price of the ingredients must be defined between 0.10 and 10 euros");
+                        alreadyWrongPrice = true;
+                    }
+                }
+            }
+            //View redirection
+            if (ok)
+            {
+                ViewBag.Name = name;
+                ViewBag.ListIngredients = ingredient;
+                ViewBag.ListAmounts = amount;
+                ViewBag.ListPrices = price;
+                ViewBag.NbIngredients = ingredient.Count;
+                ViewBag.Type = type;
+                return View();
+            }
+            else
+            {
+                ViewBag.ListErrors = error;
+                ViewBag.NbIngredients = 3;
+                return View("RecipeForm");
+            }
         }
     }
 }

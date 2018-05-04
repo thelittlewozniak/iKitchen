@@ -1,17 +1,31 @@
-﻿@{ 
+﻿@{
     int nbi = ViewBag.NbIngredients;
     var type = new List<SelectListItem> {
-    new SelectListItem { Text = "Appetizer", Value = "1" },
-    new SelectListItem { Text = "Main dish", Value = "2" },
-    new SelectListItem { Text = "Dessert", Value = "3" }};
+    new SelectListItem { Text = "Appetizer", Value = "Appetizer" },
+    new SelectListItem { Text = "Main dish", Value = "Main dish" },
+    new SelectListItem { Text = "Dessert", Value = "Dessert" }};
 }
 <h2>Create a new recipe</h2>
+@if (ViewBag.ListErrors != null)
+{
+    <div>
+        <ul>
+            @foreach (string error in ViewBag.ListErrors)
+            {
+                <li>@error</li>
+            }
+        </ul>
+    </div>
+}
 <div>
     @using (Html.BeginForm("CheckRecipe", "Recipe", "post"))
     {
     <fieldset>
         @Html.Label("name", "Name : ")
-        @Html.TextBox("name", "Name your recipe", new { autofocus = "autofocus", maxlength = 20, size = 20, min = 3 })
+        @Html.TextBox("name", "Name your recipe", new { placeholder = "autofocus", maxlength = 20, size = 20, required = "required"})
+        <br />
+        <h4>Select the dish type</h4>
+        @Html.ListBox("type", type, new { required = "required"})
         <br />
         <h4>List of Ingredients</h4>
         <table>
@@ -21,21 +35,15 @@
                 <th>Unit Price</th>
             </tr>
             @for (int i = 0; i < nbi; i++)
-        {
-            <tr>
-                <td>
-                    <input type="text" name="ingredient[@i]" maxlength="15" size="15" min="3" />
-                </td>
-                <td>
-                    <input type="number" name="amount[@i]" maxlength="2" size="2" min="1" max="20" />
-                </td>
-                <td>
-                    <input type="text" name="price[@i]" maxlength="5" size="5" />
-                </td>
-            </tr>
-    }
+             {
+                 <tr>
+                    <td><input type="text" name="ingredient[@i]" maxlength="15" size="15" required /></td>
+                    <td><input type="number" name="amount[@i]" maxlength="2" size="2" min="1" max="20" required /></td>
+                    <td><input type="text" name="price[@i]" maxlength="5" size="5" required /></td>
+                 </tr>
+             }
         </table>
-        <p>@Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi+1) }) @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi-1) })</p>
+        <p>@Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi + 1) }) @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi - 1) })</p>
         <br />
         <table border="1">
             <tr>
@@ -47,9 +55,6 @@
                 <td>@ViewBag.SellingPrice</td>
             </tr>
         </table>
-        <br />
-        <h4>Select the dish type</h4>
-        @Html.ListBox("type", type)
         <br />
         <input type="submit" value="Create recipe" />
         @Html.RouteLink("Reset Form", "RecipeForm")

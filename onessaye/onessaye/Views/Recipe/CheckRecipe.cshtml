@@ -1,14 +1,15 @@
 ﻿<h2>CheckRecipe</h2>
 <div>
     <p>Name : @ViewBag.name</p>
+    <p><b>Type : </b>@ViewBag.Type</p>
     <table>
         <tr>
             <th>Ingredient</th>
             <th>Amount</th>
             <th>Price</th>
         </tr>
-        @for(int i=0;i<ViewBag.NbIngredients;i++)
-        { 
+        @for (int i = 0; i < ViewBag.NbIngredients; i++)
+        {
             <tr>
                 <td>@ViewBag.ListIngredients[i]</td>
                 <td>@ViewBag.ListAmounts[i]</td>
