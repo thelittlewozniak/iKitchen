@@ -19,8 +19,18 @@ namespace onessaye.Controllers
         public ActionResult DisplayRecipeForm(string NbIngredients="3")
         {
             int nbi = Convert.ToInt32(NbIngredients);
+            string[] ListIngredients = new string[nbi];
+            string[] ListPrices = new string[nbi];
             if (nbi < 3) nbi = 3; //Can't have less than 3 ingredients
             ViewBag.NbIngredients = nbi;
+            //Initializing lists with values to avoid ReferenceNullException
+            for(int i=0;i<nbi;i++)
+            {
+                ListIngredients[i] = "";
+                ListPrices[i] = "";
+            }
+            ViewBag.ListIngredients = ListIngredients;
+            ViewBag.ListPrices = ListPrices;
             return View("RecipeForm");
         }
         [HttpPost]
@@ -45,13 +55,12 @@ namespace onessaye.Controllers
                 }
             }
             //View redirection
+            ViewBag.ListIngredients = ingredient;
+            ViewBag.ListAmounts = amount;
+            ViewBag.ListPrices = price;
+            ViewBag.NbIngredients = ingredient.Count;
             if (ok)
             {
-                ViewBag.Name = name;
-                ViewBag.ListIngredients = ingredient;
-                ViewBag.ListAmounts = amount;
-                ViewBag.ListPrices = price;
-                ViewBag.NbIngredients = ingredient.Count;
                 ViewBag.Type = type;
                 return View();
             }
