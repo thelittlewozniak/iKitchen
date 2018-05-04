@@ -1,11 +1,16 @@
 ﻿@{ 
     int nbi = ViewBag.NbIngredients;
-    int inter = nbi+1;
-    string nbiplus = Convert.ToString(inter);
+    int interplus = nbi + 1;
+    int interminus = nbi - 1;
+    string nbiminus = Convert.ToString(interminus);
+    string nbiplus = Convert.ToString(interplus);
+    string[] tabIngredients = new string[nbi];
+    string[] tabAmounts = new string[nbi];
+    string[] tabPrices = new string[nbi];
 }
 <h2>AddRecipe</h2>
 <div>
-    @using (Html.BeginForm("Recipe", "CheckRecipe", "post"))
+    @using (Html.BeginForm("CheckRecipe", "Recipe", "post"))
     {
     <fieldset>
         @Html.Label("name", "Name : ")
@@ -22,32 +27,33 @@
           {
             <tr>
                 <td>
-                    <input type="text" name="ingredient[@i]" maxlength="15" size="15" min="3" />
+                    <input type="text" name="@tabIngredients[i]" maxlength="15" size="15" min="3" />
                 </td>
                 <td>
-                    <input type="number" name="amount[@i]" maxlength="2" size="2" min="1" />
+                    <input type="number" name="@tabAmounts[i]" maxlength="2" size="2" min="1" max="20" />
                 </td>
                 <td>
-                    <input type="text" name="price[@i]" maxlength="5" size="5" min="1" />
+                    <input type="text" name="@tabPrices[i]" maxlength="5" size="5" />
                 </td>
             </tr>
          }
         </table>
-        @Html.ActionLink("+Add Ingredient", "DisplayRecipeForm", new { NbIngredients = nbiplus })
-        <br />
-        <table>
-            <tr>
-                <th>Cost price</th>
-                <td>@ViewBag.CostPrice</td>
-            </tr>
-            <tr>
-                <th>Selling price</th>
-                <td>@ViewBag.SellingPrice</td>
-            </tr>
-        </table>
-        <input type="submit" value="Create recipe" />
-        @Html.RouteLink("Reset Form", "RecipeForm")
-    </fieldset>
+        <p>
+            @Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = nbiplus }) @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = nbiminus })</p>
+            <br />
+            <table border="1">
+                <tr>
+                    <th>Cost price</th>
+                    <td>@ViewBag.CostPrice</td>
+                </tr>
+                <tr>
+                    <th>Selling price</th>
+                    <td>@ViewBag.SellingPrice</td>
+                </tr>
+            </table>
+            <input type="submit" value="Create recipe" />
+            @Html.RouteLink("Reset Form", "RecipeForm")
+</fieldset>
     }
 </div>
 
