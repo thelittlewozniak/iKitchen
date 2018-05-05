@@ -39,26 +39,42 @@ namespace onessaye.Controllers
             //Checking
             List<string> error = new List<string>();
             bool ok = true;
-            bool alreadyWrongPrice = false;
+            //Checking name of recipe
+            if(name.Length<3)
+            {
+                ok = false;
+                error.Add("The name of the recipe must contain at least 3 characters");
+            }
+            //Checking prices
+            bool incorrectPrice = false;
             double inter;
             foreach (string p in price)
             {
-                if (!alreadyWrongPrice)
-                {
-                    bool isDouble = double.TryParse(p, out inter);
-                    if (!isDouble || (Convert.ToDouble(p) < 0.10 || Convert.ToDouble(p) > 10 || p is null))
-                    {
-                        ok = false;
-                        error.Add("The price of the ingredients must be defined between 0.10 and 10 euros");
-                        alreadyWrongPrice = true;
-                    }
-                }
+                bool isDouble = double.TryParse(p, out inter);
+                if (!isDouble || (Convert.ToDouble(p) < 0.10 || Convert.ToDouble(p) > 10 || p is null)) incorrectPrice = true;
+            }
+            if(incorrectPrice)
+            {
+                ok = false;
+                error.Add("The price of the ingredients must be defined between 0.10 and 10 euros");
+            }
+            //Checking name of ingredients
+            bool notEnoughChar = false;
+            foreach(string i in ingredient)
+            {
+                if (i.Length < 3) notEnoughChar = true;
+            }
+            if (notEnoughChar)
+            {
+                ok = false;
+                error.Add("The name of the ingredients must contain at least 3 characters");
             }
             //View redirection
+            ViewBag.Name = name;
             ViewBag.ListIngredients = ingredient;
             ViewBag.ListAmounts = amount;
             ViewBag.ListPrices = price;
-            ViewBag.NbIngredients = ingredient.Count;
+            ViewBag.NbIngredients = Convert.ToInt32(ingredient.Count);
             if (ok)
             {
                 ViewBag.Type = type;
@@ -67,7 +83,6 @@ namespace onessaye.Controllers
             else
             {
                 ViewBag.ListErrors = error;
-                ViewBag.NbIngredients = 3;
                 return View("RecipeForm");
             }
         }
