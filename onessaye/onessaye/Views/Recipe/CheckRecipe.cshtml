@@ -1,11 +1,13 @@
-﻿<h2>CheckRecipe</h2>
+﻿@*Bisconti Flavian*@
+<h2>CheckRecipe</h2>
 <div>
-    <p>Name : @ViewBag.name</p>
+    <p><b>Name : </b>@ViewBag.name</p>
     <p><b>Type : </b>@ViewBag.Type</p>
-    <table>
+    <table border="1">
         <tr>
             <th>Ingredient</th>
             <th>Amount</th>
+            <th>Measure Unit</th>
             <th>Price</th>
         </tr>
         @for (int i = 0; i < ViewBag.NbIngredients; i++)
@@ -13,9 +15,13 @@
             <tr>
                 <td>@ViewBag.ListIngredients[i]</td>
                 <td>@ViewBag.ListAmounts[i]</td>
+                <td>@ViewBag.ListUnits[i]</td>
                 <td>@ViewBag.ListPrices[i]</td>
             </tr>
         }
     </table>
+    <p><a href="~/Recipe/AcceptedRecipe">Confirm recipe</a> 
+        <a href="~/Recipe/DisplayRecipeForm">Cancel recipe</a>
+    </p>
 </div>
 

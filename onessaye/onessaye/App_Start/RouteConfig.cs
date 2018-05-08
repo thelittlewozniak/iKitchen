@@ -27,6 +27,11 @@ namespace onessaye
             routes.MapRoute(
                 name: "RecipeForm",
                 url: "Recipe/DisplayRecipeForm");
+
+            routes.MapRoute(
+                name: "Cook",
+                url: "Cook/{action}/{id}",
+                defaults: new { action = "ProfilePage", id = UrlParameter.Optional });
         }
     }
 }
