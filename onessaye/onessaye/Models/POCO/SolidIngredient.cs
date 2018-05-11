@@ -20,7 +20,7 @@ namespace onessaye.Models.POCO
         }
         public override string ToString()
         {
-            return $"{Amount} {Unit} of {Name} for {CalculCostIngredient()}";
+            return $"{Amount}{Unit} of {Name} for {CalculCostIngredient()}";
         }
     }
 }

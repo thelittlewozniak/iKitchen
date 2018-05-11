@@ -67,12 +67,9 @@ namespace onessaye.Controllers
             foreach(string i in ingredient)
             {
                 if (i.Length < 3) notEnoughChar = true;
-                else
+                for(int j=0;j<i.Length;j++)
                 {
-                    for(int j=0;j<i.Length;j++)
-                    {
-                        if (i[j] >= '0' && i[j] <= '9') wrongChar = true;
-                    }
+                    if (i[j] >= '0' && i[j] <= '9') wrongChar = true;
                 }
             }
             if (notEnoughChar)
@@ -142,7 +139,7 @@ namespace onessaye.Controllers
                     }
                 }
                 DisplayRecipeInformations d = new DisplayRecipeInformations(recipe);
-                return View();
+                return View(d);
             }
             else
             {
