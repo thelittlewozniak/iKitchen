@@ -15,7 +15,21 @@ namespace onessaye.Models.POCO
         public string Type { get; set; }
         public double CostPrice { get; set; }
         public double SellingPrice { get; set; }
+        public DateTime Date { get; set; }
         public List<Ingredient> ListIngredients { get; set; }
         public List<Comment> ListComments { get; set; }
+        //Builder
+        public Recipe(string name, string topic, string type)
+        {
+            Name = name;
+            Topic = topic;
+            Type = type;
+            ListIngredients = new List<Ingredient>();
+        }
+        //Methods
+        public void AddIngredient(Ingredient i)
+        {
+            ListIngredients.Add(i);
+        }
     }
 }

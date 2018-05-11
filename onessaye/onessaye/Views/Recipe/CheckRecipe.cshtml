@@ -1,25 +1,17 @@
-﻿@*Bisconti Flavian*@
+﻿@using onessaye.Models.POCO;
+@model onessaye.Views.ViewClasses.DisplayRecipeInformations
+
+@*Bisconti Flavian*@
+
 <h2>CheckRecipe</h2>
 <div>
-    <p><b>Name : </b>@ViewBag.name</p>
-    <p><b>Type : </b>@ViewBag.Type</p>
-    <table border="1">
-        <tr>
-            <th>Ingredient</th>
-            <th>Amount</th>
-            <th>Measure Unit</th>
-            <th>Price</th>
-        </tr>
-        @for (int i = 0; i < ViewBag.NbIngredients; i++)
+    <p><b>Name : </b>@Model.r.Name</p>
+    <p><b>Type : </b>@Model.r.Type</p>
+    <h4>List of ingredients</h4>
+        @foreach(Ingredient ing in Model.r.ListIngredients)
         {
-            <tr>
-                <td>@ViewBag.ListIngredients[i]</td>
-                <td>@ViewBag.ListAmounts[i]</td>
-                <td>@ViewBag.ListUnits[i]</td>
-                <td>@ViewBag.ListPrices[i]</td>
-            </tr>
+            <p>@ing</p>
         }
-    </table>
     <p><a href="~/Recipe/AcceptedRecipe">Confirm recipe</a> 
         <a href="~/Recipe/DisplayRecipeForm">Cancel recipe</a>
     </p>

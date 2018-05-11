@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using onessaye.Views.ViewClasses;
+using onessaye.Models.POCO;
 
 //Bisconti Flavian
 
@@ -109,19 +111,47 @@ namespace onessaye.Controllers
                 error.Add("The amount of the ingredients quantified in ml or g must be defined between 10 and 500");
             }
             //View redirection
-            ViewBag.Name = name;
-            ViewBag.ListIngredients = ingredient;
-            ViewBag.ListAmounts = amount;
-            ViewBag.ListPrices = price;
-            ViewBag.ListUnits = unit;
-            ViewBag.NbIngredients = Convert.ToInt32(ingredient.Count);
             if (ok)
             {
                 ViewBag.Type = type;
+                Recipe recipe = new Recipe(name, "Asian", type);
+                for(int i=0;i<ingredient.Count;i++)
+                {
+                    switch(unit[i])
+                    {
+                        case "g":
+                            {
+                                recipe.AddIngredient(new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                break;
+                            }
+                        case "ml":
+                            {
+                                recipe.AddIngredient(new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                break;
+                            }
+                        case "teaspoon":
+                            {
+                                recipe.AddIngredient(new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                break;
+                            }
+                        case "unit":
+                            {
+                                recipe.AddIngredient(new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                break;
+                            }
+                    }
+                }
+                DisplayRecipeInformations d = new DisplayRecipeInformations(recipe);
                 return View();
             }
             else
             {
+                ViewBag.Name = name;
+                ViewBag.ListIngredients = ingredient;
+                ViewBag.ListAmounts = amount;
+                ViewBag.ListPrices = price;
+                ViewBag.ListUnits = unit;
+                ViewBag.NbIngredients = Convert.ToInt32(ingredient.Count);
                 ViewBag.ListErrors = error;
                 return View("RecipeForm");
             }

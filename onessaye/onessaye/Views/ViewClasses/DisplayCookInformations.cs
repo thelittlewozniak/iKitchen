@@ -10,17 +10,18 @@ namespace onessaye.Views.ViewClasses
 {
     public class DisplayCookInformations
     {
-        public Cook c = null;
+        private Cook c = null;
         public string[] TabLabels = new string[]
         {
             "Nickname", "Last name", "First name", "Gender", "Age", "Adress", "Email", "Registered since" 
         };
-        public string[] TabInfos;
         public DisplayCookInformations(Cook c)
         {
             this.c = c;
             BuildTabInfos();
         }
+        //Aim : making the display of the information easier on the cook profile page
+        public string[] TabInfos;
         private void BuildTabInfos()
         {
             TabInfos = new string[]

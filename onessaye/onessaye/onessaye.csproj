@@ -122,13 +122,18 @@
     <Compile Include="Models\POCO\Comment.cs" />
     <Compile Include="Models\POCO\Cook.cs" />
     <Compile Include="Models\POCO\Ingredient.cs" />
+    <Compile Include="Models\POCO\LiquidIngredient.cs" />
     <Compile Include="Models\POCO\Neighbour.cs" />
     <Compile Include="Models\POCO\Order.cs" />
     <Compile Include="Models\POCO\Recipe.cs" />
     <Compile Include="Models\POCO\Schedule.cs" />
+    <Compile Include="Models\POCO\SolidIngredient.cs" />
+    <Compile Include="Models\POCO\TeaspoonIngredient.cs" />
+    <Compile Include="Models\POCO\UnitIngredient.cs" />
     <Compile Include="Models\POCO\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Views\ViewClasses\DisplayCookInformations.cs" />
+    <Compile Include="Views\ViewClasses\DisplayRecipeInformations.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\web.config" />
@@ -153,6 +158,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Models\INTERFACES\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
