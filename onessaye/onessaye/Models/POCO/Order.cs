@@ -7,6 +7,7 @@ namespace onessaye.Models.POCO
 {
     public class Order
     {
+        public int Id { get; set; }
         public DateTime CreationDate { get; set; }
         public DateTime ReceiptDate { get; set; }
         public Recipe Recipe { get; set; }

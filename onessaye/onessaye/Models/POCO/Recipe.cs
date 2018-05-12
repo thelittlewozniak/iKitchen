@@ -10,6 +10,7 @@ namespace onessaye.Models.POCO
     public class Recipe
     {
         //Attributes
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Topic { get; set; }
         public string Type { get; set; }
@@ -24,6 +25,7 @@ namespace onessaye.Models.POCO
             Name = name;
             Topic = topic;
             Type = type;
+            Date = DateTime.Today;
             ListIngredients = new List<Ingredient>();
         }
         //Methods

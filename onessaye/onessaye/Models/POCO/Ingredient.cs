@@ -10,6 +10,7 @@ namespace onessaye.Models.POCO
     public abstract class Ingredient 
     {
         //Attributes
+        public int Id { get; set; }
         public string Name { get; set; }
         public double Amount { get; set; }
         public double UnitPrice { get; set; }

@@ -32,6 +32,11 @@ namespace onessaye
                 name: "Cook",
                 url: "Cook/{action}/{id}",
                 defaults: new { action = "ProfilePage", id = UrlParameter.Optional });
+
+            routes.MapRoute(
+                name: "AcceptRecipe",
+                url: "Cook/AcceptedRecipe/{id}",
+                defaults: new { id = UrlParameter.Optional });
         }
     }
 }

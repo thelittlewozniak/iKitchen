@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using onessaye.Views.ViewClasses;
 using onessaye.Models.POCO;
+using onessaye.Models.DAL;
 
 //Bisconti Flavian
 
@@ -138,6 +139,8 @@ namespace onessaye.Controllers
                             }
                     }
                 }
+                RecipeDAL dal = new RecipeDAL();
+                dal.AddRecipe(recipe);
                 DisplayRecipeInformations d = new DisplayRecipeInformations(recipe);
                 return View(d);
             }
@@ -152,10 +155,6 @@ namespace onessaye.Controllers
                 ViewBag.ListErrors = error;
                 return View("RecipeForm");
             }
-        }
-        public ActionResult AcceptedRecipe()
-        {
-            return View();
         }
     }
 }

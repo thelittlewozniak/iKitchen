@@ -18,6 +18,11 @@ namespace onessaye.Models.DAL
             dbc = new DbConnection();
         }
         //Methods
+        public void AddRecipe(Recipe r)
+        {
+            dbc.DbRecipe.Add(r);
+            dbc.SaveChanges();
+        }
         public List<Recipe> GetListRecipes()
         {
             return dbc.DbRecipe.ToList();

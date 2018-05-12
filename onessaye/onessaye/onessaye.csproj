@@ -147,7 +147,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Recipe\RecipeForm.cshtml" />
     <Content Include="Views\Recipe\CheckRecipe.cshtml" />
-    <Content Include="Views\Recipe\AcceptedRecipe.cshtml" />
     <Content Include="Views\Cook\ProfilePage.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
