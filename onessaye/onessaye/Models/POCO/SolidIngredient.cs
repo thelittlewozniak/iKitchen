@@ -20,7 +20,8 @@ namespace onessaye.Models.POCO
         }
         public override string ToString()
         {
-            return $"{Amount}{Unit} of {Name} for {CalculCostIngredient()}";
+            string price = String.Format("{0:0.00}", CalculCostIngredient());
+            return $"{Amount}{Unit} of {Name} for {price} euros";
         }
     }
 }
