@@ -20,7 +20,7 @@ namespace onessaye.Views.ViewClasses
             this.c = c;
             BuildTabInfos();
         }
-        //Aim : making the display of the information easier on the cook profile page
+        //Purpose : making the display of the information easier on the cook profile page
         public string[] TabInfos;
         private void BuildTabInfos()
         {

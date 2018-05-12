@@ -15,5 +15,13 @@ namespace onessaye.Views.ViewClasses
         {
             this.r = r;
         }
+        public string ReturnCostPrice()
+        {
+            return String.Format("{0:###.00}",r.CalculCostPrice());
+        }
+        public string ReturnSellingPrice()
+        {
+            return String.Format("{0:###.00}", r.CalculSellingPrice());
+        }
     }
 }

@@ -31,5 +31,18 @@ namespace onessaye.Models.POCO
         {
             ListIngredients.Add(i);
         }
+        public double CalculCostPrice()
+        {
+            double cost = 0;
+            foreach (Ingredient ing in ListIngredients)
+            {
+                cost += ing.CalculCostIngredient();
+            }
+            return cost;
+        }
+        public double CalculSellingPrice()
+        {
+            return CalculCostPrice() * 1.05;
+        }
     }
 }

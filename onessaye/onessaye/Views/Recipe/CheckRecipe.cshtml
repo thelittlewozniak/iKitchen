@@ -14,6 +14,20 @@
             <li>@ing</li>
         }
     </ul>
+    <table border="1">
+        <tr>
+            <th>Cost price</th>
+            <td>@Model.ReturnCostPrice()</td>
+        </tr>
+        <tr>
+            <td><i>TVA</i></td>
+            <td>+0,05%</td>
+        </tr>
+        <tr>
+            <th>Selling price</th>
+            <td>@Model.ReturnSellingPrice()</td>
+        </tr>
+    </table>
     <p><a href="~/Recipe/AcceptedRecipe">Confirm recipe</a> 
         <a href="~/Recipe/DisplayRecipeForm">Cancel recipe</a>
     </p>
