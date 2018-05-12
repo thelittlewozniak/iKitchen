@@ -14,9 +14,9 @@ namespace onessaye.Models.POCO
         //Builder
         public LiquidIngredient(string name, double amount, double unitPrice) : base(name, amount, unitPrice) { }
         //Methods
-        public override double CalculCostIngredient()
+        public override float CalculCostIngredient()
         {
-            return UnitPrice * (Amount/100);
+            return (float)(UnitPrice * (Amount/100));
         }
         public override string ToString()
         {

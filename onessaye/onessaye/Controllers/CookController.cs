@@ -14,7 +14,7 @@ namespace onessaye.Controllers
         public ActionResult ProfilePage()
         {
             Cook c = new Cook { Nickname="Bgdu87", Address="Charleroi, Rue de la Boucherie, 90", Email="bg@hotmail.com",
-                FirstName="Jean", LastName="Bouvier", Gender="M", Age=45, DateRegister=DateTime.Today};
+                FirstName="Jean", LastName="Bouvier", Gender="M", Age=45, DateRegister=DateTime.Now};
             DisplayCookInformations info = new DisplayCookInformations(c);
             return View(info);
         }

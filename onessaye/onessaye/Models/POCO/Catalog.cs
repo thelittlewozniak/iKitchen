@@ -11,5 +11,9 @@ namespace onessaye.Models.POCO
         public DateTime ValidityDate { get; set; }
         public string Topic { get; set; }
         public List<Recipe> ListRecipes { get; set; }
+        public void AddRecipe(Recipe r)
+        {
+            ListRecipes.Add(r);
+        }
     }
 }

@@ -112,35 +112,46 @@ namespace onessaye.Controllers
             if (ok)
             {
                 ViewBag.Type = type;
-                Recipe recipe = new Recipe(name, "Asian", type);
+                Recipe recipe = new Recipe(name, type);
                 for(int i=0;i<ingredient.Count;i++)
                 {
+                    IngredientDAL dalI = new IngredientDAL();
                     switch(unit[i])
                     {
                         case "g":
                             {
-                                recipe.AddIngredient(new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                SolidIngredient ing = new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                dalI.AddIngredient(ing);
                                 break;
                             }
                         case "ml":
                             {
-                                recipe.AddIngredient(new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                LiquidIngredient ing = new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                dalI.AddIngredient(ing);
                                 break;
                             }
                         case "teaspoon":
                             {
-                                recipe.AddIngredient(new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                TeaspoonIngredient ing = new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                dalI.AddIngredient(ing);
                                 break;
                             }
                         case "unit":
                             {
-                                recipe.AddIngredient(new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i])));
+                                UnitIngredient ing = new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                dalI.AddIngredient(ing);
                                 break;
                             }
                     }
                 }
-                RecipeDAL dal = new RecipeDAL();
-                dal.AddRecipe(recipe);
+                RecipeDAL dalR = new RecipeDAL();
+                recipe.CostPrice = recipe.CalculCostPrice();
+                recipe.SellingPrice = recipe.CalculSellingPrice();
+                dalR.AddRecipe(recipe);
                 DisplayRecipeInformations d = new DisplayRecipeInformations(recipe);
                 return View(d);
             }

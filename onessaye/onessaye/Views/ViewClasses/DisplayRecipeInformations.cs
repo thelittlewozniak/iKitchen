@@ -17,11 +17,15 @@ namespace onessaye.Views.ViewClasses
         }
         public string ReturnCostPrice()
         {
-            return String.Format("{0:###.00}",r.CalculCostPrice());
+            return String.Format("{0:00.00}",r.CostPrice);
         }
         public string ReturnSellingPrice()
         {
-            return String.Format("{0:###.00}", r.CalculSellingPrice());
+            return String.Format("{0:00.00}", r.SellingPrice);
+        }
+        public string ReturnDate()
+        {
+            return String.Format("{0:d}",r.Date);
         }
     }
 }

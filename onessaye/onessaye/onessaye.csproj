@@ -117,7 +117,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DAL\DbConnection.cs" />
+    <Compile Include="Models\DAL\IngredientDAL.cs" />
     <Compile Include="Models\DAL\RecipeDAL.cs" />
+    <Compile Include="Models\DAL\UserDAL.cs" />
     <Compile Include="Models\POCO\Catalog.cs" />
     <Compile Include="Models\POCO\Comment.cs" />
     <Compile Include="Models\POCO\Cook.cs" />

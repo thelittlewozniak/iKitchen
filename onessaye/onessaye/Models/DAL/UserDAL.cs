@@ -2,25 +2,22 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using System.Data.Entity;
 using onessaye.Models.POCO;
-
-//Bisconti Flavian
 
 namespace onessaye.Models.DAL
 {
-    public class RecipeDAL : DbContext
+    public class UserDAL
     {
         private DbConnection dbc;
         //Builder
-        public RecipeDAL()
+        public UserDAL()
         {
             dbc = new DbConnection();
         }
         //Methods
-        public void AddRecipe(Recipe r)
+        public void AddUser(User u)
         {
-            dbc.DbRecipe.Add(r);
+            dbc.DbUser.Add(u);
             dbc.SaveChanges();
         }
     }

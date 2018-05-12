@@ -12,20 +12,18 @@ namespace onessaye.Models.POCO
         //Attributes
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Topic { get; set; }
         public string Type { get; set; }
-        public double CostPrice { get; set; }
-        public double SellingPrice { get; set; }
+        public float CostPrice { get; set; }
+        public float SellingPrice { get; set; }
         public DateTime Date { get; set; }
         public List<Ingredient> ListIngredients { get; set; }
         public List<Comment> ListComments { get; set; }
         //Builder
-        public Recipe(string name, string topic, string type)
+        public Recipe(string name, string type)
         {
             Name = name;
-            Topic = topic;
             Type = type;
-            Date = DateTime.Today;
+            Date = DateTime.Now;
             ListIngredients = new List<Ingredient>();
         }
         //Methods
@@ -33,18 +31,18 @@ namespace onessaye.Models.POCO
         {
             ListIngredients.Add(i);
         }
-        public double CalculCostPrice()
+        public float CalculCostPrice()
         {
-            double cost = 0;
+            float cost = 0;
             foreach (Ingredient ing in ListIngredients)
             {
                 cost += ing.CalculCostIngredient();
             }
             return cost;
         }
-        public double CalculSellingPrice()
+        public float CalculSellingPrice()
         {
-            return CalculCostPrice() * 1.05;
+            return (float)(CalculCostPrice()*1.05);
         }
     }
 }

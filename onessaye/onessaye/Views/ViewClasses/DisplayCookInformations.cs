@@ -13,7 +13,7 @@ namespace onessaye.Views.ViewClasses
         private Cook c = null;
         public string[] TabLabels = new string[]
         {
-            "Nickname", "Last name", "First name", "Gender", "Age", "Adress", "Email", "Registered since" 
+            "Nickname", "Last name", "First name", "Gender", "Age", "Address", "Email", "Registered since" 
         };
         public DisplayCookInformations(Cook c)
         {
@@ -24,10 +24,11 @@ namespace onessaye.Views.ViewClasses
         public string[] TabInfos;
         private void BuildTabInfos()
         {
+            string date = String.Format("{0:G}", c.DateRegister);
             TabInfos = new string[]
             {
                 c.Nickname, c.LastName, c.FirstName, c.Gender, Convert.ToString(c.Age), c.Address, 
-                c.Email, c.DateRegister.ToString()
+                c.Email, date
             };
         }
     }
