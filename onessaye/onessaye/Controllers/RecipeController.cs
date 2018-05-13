@@ -152,7 +152,7 @@ namespace onessaye.Controllers
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
                 dalR.AddRecipe(recipe);
-                DisplayRecipeInformations d = new DisplayRecipeInformations(recipe);
+                DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View(d);
             }
             else

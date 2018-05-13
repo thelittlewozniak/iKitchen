@@ -8,10 +8,10 @@ using onessaye.Models.POCO;
 
 namespace onessaye.Views.ViewClasses
 {
-    public class DisplayRecipeInformations
+    public class DisplayRecipeInformation
     {
         public Recipe r = null;
-        public DisplayRecipeInformations(Recipe r)
+        public DisplayRecipeInformation(Recipe r)
         {
             this.r = r;
         }

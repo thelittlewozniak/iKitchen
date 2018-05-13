@@ -8,27 +8,27 @@ using onessaye.Models.POCO;
 
 namespace onessaye.Views.ViewClasses
 {
-    public class DisplayCookInformations
+    public class DisplayUserInformation
     {
-        private Cook c = null;
+        private User user = null;
         public string[] TabLabels = new string[]
         {
-            "Nickname", "Last name", "First name", "Gender", "Age", "Address", "Email", "Registered since" 
+            "Nickname", "Last name", "First name", "Gender", "Age", "Email", "Registered since" 
         };
-        public DisplayCookInformations(Cook c)
+        public DisplayUserInformation(User u)
         {
-            this.c = c;
+            user = u;
             BuildTabInfos();
         }
         //Purpose : making the display of the information easier on the cook profile page
         public string[] TabInfos;
         private void BuildTabInfos()
         {
-            string date = String.Format("{0:G}", c.DateRegister);
+            string date = String.Format("{0:G}", user.DateRegister);
             TabInfos = new string[]
             {
-                c.Nickname, c.LastName, c.FirstName, c.Gender, Convert.ToString(c.Age), c.Address, 
-                c.Email, date
+                user.Nickname, user.LastName, user.FirstName, user.Gender, Convert.ToString(user.Age), 
+                user.Email, date
             };
         }
     }
