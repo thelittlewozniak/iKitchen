@@ -1,9 +1,23 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-}
+﻿@model onessaye.Models.POCO.User
+
+@*Bisconti Flavian*@
 
 <h2>Index</h2>
 <a href="~/Recipe/DisplayRecipeForm">Add recipe</a>
 <br />
 <a href="~/Cook/ProfilePage">Profil</a>
+<div>
+    @using (Html.BeginForm("Login","Home","get"))
+    {
+        <fieldset>
+            <legend>Connexion</legend>
+            @Html.LabelFor(model => model.Nickname)
+            @Html.TextBoxFor(model => model.Nickname)
+            <br/>
+            @Html.LabelFor(model => model.Password)
+            @Html.TextBoxFor(model => model.Password)
+            <br/>
+            <input type="submit" value="Log in"/>
+        </fieldset>
+    }
+</div>

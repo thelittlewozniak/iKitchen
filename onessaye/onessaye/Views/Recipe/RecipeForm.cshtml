@@ -7,7 +7,6 @@
     new SelectListItem { Text = "Main dish", Value = "Main dish" },
     new SelectListItem { Text = "Dessert", Value = "Dessert" }};
 }
-<h2>Create a new recipe</h2>
 @if (ViewBag.ListErrors != null)
 {
     <div>
@@ -23,6 +22,7 @@
     @using (Html.BeginForm("CheckRecipe", "Recipe", "post"))
     {
     <fieldset>
+        <legend>Create a new recipe</legend>
         @Html.Label("name", "Name : ")
         @Html.TextBox("name", name , new { autofocus = "autofocus", placeholder = "Name your recipe", minlength = 3, maxlength = 20, size = 20, required = "required"})
         <br />

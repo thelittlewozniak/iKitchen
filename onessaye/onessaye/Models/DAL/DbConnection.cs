@@ -23,50 +23,6 @@ namespace onessaye.Models.DAL
             protected override void Seed(DbConnection context)
             {
                 //Si la base de données contenait des données
-                context.DbUser.Add(new User
-                {
-                    Nickname = "test",
-                    Age = 45,
-                    Email = "test@test.test",
-                    DateRegister =DateTime.Now,
-                    Gender = "Male",
-                    FirstName = "TestName",
-                    LastName = "TestName",
-                    Password = "testbordel"
-                });
-                context.DbUser.Add(new User
-                {
-                    Nickname = "Beaugosse",
-                    Age = 18,
-                    Email = "bgdu45@hotmail.be",
-                    DateRegister = DateTime.Now,
-                    Gender = "Male",
-                    FirstName = "Marcel",
-                    LastName = "Berger",
-                    Password = "eztobefound"
-                });
-                context.DbUser.Add(new User
-                {
-                    Nickname = "Cookie",
-                    Age = 25,
-                    Email = "babar@gmail.be",
-                    DateRegister = DateTime.Now,
-                    Gender = "Female",
-                    FirstName = "Aurélie",
-                    LastName = "Coffier",
-                    Password = "beautyANDThebEAst4521"
-                });
-                context.DbUser.Add(new User
-                {
-                    Nickname = "BougieVerte",
-                    Age = 32,
-                    Email = "bvblue@outlook.com",
-                    DateRegister = DateTime.Now,
-                    Gender = "Male",
-                    FirstName = "David",
-                    LastName = "Trent",
-                    Password = "bblabougie"
-                });
             }
         }
     }

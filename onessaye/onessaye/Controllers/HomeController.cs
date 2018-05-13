@@ -13,5 +13,10 @@ namespace onessaye.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult Login(string Nickname, string Password)
+        {
+            return RedirectToAction("");
+        }
     }
 }
