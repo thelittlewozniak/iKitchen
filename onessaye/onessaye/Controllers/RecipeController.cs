@@ -152,10 +152,7 @@ namespace onessaye.Controllers
                 RecipeDAL dalR = new RecipeDAL();
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
-                dalR.AddRecipe(recipe);
-                UserDAL dalU = new UserDAL();
-                Cook c = dalU.GetCook(cook_nickname);
-                c.AddRecipe(recipe);
+                dalR.AddRecipe(cook_nickname, recipe);
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View(d);
             }

@@ -9,7 +9,7 @@ using onessaye.Models.EXCEPTIONS;
 
 namespace onessaye.Models.DAL
 {
-    public class UserDAL
+    public class UserDAL 
     {
         private DbConnection dbc;
         //Builder

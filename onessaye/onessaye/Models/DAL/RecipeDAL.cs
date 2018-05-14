@@ -18,9 +18,10 @@ namespace onessaye.Models.DAL
             dbc = new DbConnection();
         }
         //Methods
-        public void AddRecipe(Recipe r)
+        public void AddRecipe(string cook_nickname, Recipe recipe)
         {
-            dbc.DbRecipe.Add(r);
+            dbc.DbRecipe.Add(recipe);
+            dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).AddRecipe(recipe);
             dbc.SaveChanges();
         }
         public List<Recipe> GetRecipesOfCook(Cook cook)
