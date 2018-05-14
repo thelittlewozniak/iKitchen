@@ -22,7 +22,7 @@ namespace onessaye.Models.DAL
             //Détruit la base de données et la recrée
             protected override void Seed(DbConnection context)
             {
-                context.DbUser.Add(new User{
+                context.DbUser.Add(new Cook{
                     Nickname = "test",
                     Password = "marchebordel",
                     Age = 25,
@@ -32,7 +32,7 @@ namespace onessaye.Models.DAL
                     Gender = "Male",
                     LastName = "lasttest"
                 });
-                context.DbUser.Add(new User
+                context.DbUser.Add(new Cook
                 {
                     Nickname = "salutlesGens",
                     Password = "crossedfinders",
@@ -43,7 +43,7 @@ namespace onessaye.Models.DAL
                     Gender = "Male",
                     LastName = "Ducoffre"
                 });
-                context.DbUser.Add(new User
+                context.DbUser.Add(new Neighbour
                 {
                     Nickname = "JoliePrune",
                     Password = "prunebleue",

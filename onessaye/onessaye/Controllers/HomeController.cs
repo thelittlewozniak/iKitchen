@@ -23,7 +23,17 @@ namespace onessaye.Controllers
             UserDAL dal = new UserDAL();
             try
             {
-                User SearchUser = dal.GetUser(Nickname);
+                User user = dal.GetUser(Nickname);
+                if (user.Password == Password)
+                {
+                    return RedirectToAction("ProfilePage", "User", user);
+                }
+                else
+                {
+                    errors.Add("The password entered is incorrect");
+                    ViewBag.Error = errors;
+                    return View("Index");
+                }
             }
             catch(UnableToLogInException ex)
             {
@@ -37,16 +47,7 @@ namespace onessaye.Controllers
             {
                 errors.Add("An internal error has occurred");
                 errors.Add("Please try again later");
-                return View("Index");
-            }
-            User user = dal.GetUser(Nickname);
-            if (user.Password == Password)
-            {
-                return RedirectToAction("ProfilePage", "Cook", user);
-            }
-            else
-            {
-                errors.Add("The password entered is incorrect");
+                errors.Add(ex.Message);
                 return View("Index");
             }
         }
