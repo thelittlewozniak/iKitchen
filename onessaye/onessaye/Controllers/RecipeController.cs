@@ -19,7 +19,7 @@ namespace onessaye.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult DisplayRecipeForm(string NbIngredients="3")
+        public ActionResult DisplayRecipeForm(string Cook, string NbIngredients="3")
         {
             int nbi = Convert.ToInt32(NbIngredients);
             if (nbi < 3) nbi = 3; //Can't have less than 3 ingredients neither more than 20
@@ -37,10 +37,11 @@ namespace onessaye.Controllers
             ViewBag.ListIngredients = ListIngredients;
             ViewBag.ListPrices = ListPrices;
             ViewBag.ListAmounts = ListAmounts;
+            ViewBag.Cook = Cook;
             return View("RecipeForm");
         }
         [HttpPost]
-        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string> unit,List<string>price, string type)
+        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string> unit,List<string>price, string type, string cook_nickname)
         {
             //Checking
             List<string> error = new List<string>();
@@ -152,12 +153,16 @@ namespace onessaye.Controllers
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
                 dalR.AddRecipe(recipe);
+                UserDAL dalU = new UserDAL();
+                Cook c = dalU.GetCook(cook_nickname);
+                c.AddRecipe(recipe);
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View(d);
             }
             else
             {
                 ViewBag.Name = name;
+                ViewBag.Cook = cook_nickname;
                 ViewBag.ListIngredients = ingredient;
                 ViewBag.ListAmounts = amount;
                 ViewBag.ListPrices = price;

@@ -4,14 +4,16 @@
 @*Bisconti Flavian*@
 
 @if (Model.User is Cook)
-{<div>
-    <a href="~/Recipe/DisplayRecipeForm">Add a new recipe</a>
-</div>}
+{
+<div>
+    @Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })
+</div>
+}
 
 <h2>Profile</h2>
 <div>
     <table border="1">
-        @for(int i=0;i<Model.TabLabels.Length; i++)
+        @for (int i = 0; i < Model.TabLabels.Length; i++)
         {
             <tr>
                 <th>@Model.TabLabels[i]</th>
@@ -20,4 +22,3 @@
         }
     </table>
 </div>
-

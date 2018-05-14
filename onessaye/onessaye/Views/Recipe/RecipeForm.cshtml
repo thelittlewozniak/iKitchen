@@ -2,6 +2,7 @@
 @{
     string name = ViewBag.Name;
     int nbi = ViewBag.NbIngredients;
+    string cook = ViewBag.Cook;
     var type = new List<SelectListItem> {
     new SelectListItem { Text = "Appetizer", Value = "Appetizer" },
     new SelectListItem { Text = "Main dish", Value = "Main dish" },
@@ -52,12 +53,13 @@
                  </tr>
              }
         </table>
-        <p>@Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi + 1) }) 
-            @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { NbIngredients = Convert.ToString(nbi - 1) })
+        <p>@Html.ActionLink("+Add Ingredient Slot", "DisplayRecipeForm", new { Cook = cook, NbIngredients = Convert.ToString(nbi + 1) }) 
+            @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { Cook = cook, NbIngredients = Convert.ToString(nbi - 1) })
         </p>
         <br />
-        <input type="submit" value="Create recipe" />
-        @Html.RouteLink("Reset Form", "RecipeForm")
+        <input type="text" value="@cook" name="cook_nickname" hidden />
+        <input type="submit" value="Create recipe" /> 
+        @Html.RouteLink("Reset Form", "RecipeForm", new { Cook = cook})
     </fieldset>
     }
 </div>

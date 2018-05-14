@@ -44,5 +44,9 @@ namespace onessaye.Models.POCO
         {
             return (float)(CalculCostPrice()*1.05);
         }
+        public override string ToString()
+        {
+            return $"{Name} added the {Date.ToString()} ({ListIngredients.Count} ingredients)";
+        }
     }
 }

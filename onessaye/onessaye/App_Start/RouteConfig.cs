@@ -20,18 +20,13 @@ namespace onessaye
             );
             //Bisconti Flavian
             routes.MapRoute(
-                name: "DisplayRecipeForm",
-                url: "Recipe/DisplayRecipeForm/{NbIngredients}",
-                defaults: new { NbIngredients = UrlParameter.Optional});
+                name: "AddRecipe",
+                url: "Recipe/DisplayRecipeForm/{Cook}/{NbIngredients}",
+                defaults: new { controller = "Recipe", action = "DisplayRecipeForm", NbIngredients = UrlParameter.Optional});
 
             routes.MapRoute(
                 name: "RecipeForm",
                 url: "Recipe/DisplayRecipeForm");
-
-            routes.MapRoute(
-                name: "Cook",
-                url: "Cook/{action}/{id}",
-                defaults: new { action = "ProfilePage", id = UrlParameter.Optional });
 
             routes.MapRoute(
                 name: "AcceptRecipe",

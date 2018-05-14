@@ -23,5 +23,20 @@ namespace onessaye.Models.DAL
             dbc.DbRecipe.Add(r);
             dbc.SaveChanges();
         }
+        public List<Recipe> GetRecipesOfCook(Cook cook)
+        {
+            List<Recipe> L_Recipes = new List<Recipe>();
+            if (cook.ListRecipes != null)
+            {
+                foreach (Recipe r1 in cook.ListRecipes)
+                {
+                    foreach (Recipe r2 in dbc.DbRecipe)
+                    {
+                        if (r1.Id == r2.Id) L_Recipes.Add(r1);
+                    }
+                }
+            }
+            return L_Recipes;
+        }
     }
 }
