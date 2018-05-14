@@ -10,25 +10,25 @@ namespace onessaye.Views.ViewClasses
 {
     public class DisplayUserInformation
     {
-        private User user = null;
+        public User User { get; set; }
         public string[] TabLabels = new string[]
         {
             "Nickname", "Last name", "First name", "Gender", "Age", "Email", "Registered since" 
         };
         public DisplayUserInformation(User u)
         {
-            user = u;
+            User = u;
             BuildTabInfos();
         }
         //Purpose : making the display of the information easier on the cook profile page
         public string[] TabInfos;
         private void BuildTabInfos()
         {
-            string date = String.Format("{0:G}", user.DateRegister);
+            string date = String.Format("{0:G}", User.DateRegister);
             TabInfos = new string[]
             {
-                user.Nickname, user.LastName, user.FirstName, user.Gender, Convert.ToString(user.Age), 
-                user.Email, date
+                User.Nickname, User.LastName, User.FirstName, User.Gender, Convert.ToString(User.Age), 
+                User.Email, date
             };
         }
     }
