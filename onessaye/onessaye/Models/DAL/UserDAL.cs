@@ -18,19 +18,24 @@ namespace onessaye.Models.DAL
             dbc = new DbConnection();
         }
         //Methods
-        public void AddUser(User u)
+        public void AddCook(Cook c)
         {
-            dbc.DbUser.Add(u);
+            dbc.DbCook.Add(c);
             dbc.SaveChanges();
         }
-        public User GetUser(string nickname)
+        public Cook GetCook(string nickname)
         {
-            User user = dbc.DbUser.FirstOrDefault(u => u.Nickname == nickname);
-            if (user != null) return user;
+            Cook cook = dbc.DbCook.FirstOrDefault(u => u.Nickname == nickname);
+            return cook;
+        }
+        public Neighbor GetNeighbor(string nickname)
+        {
+            Neighbor neighbor = dbc.DbNeighbor.FirstOrDefault(u => u.Nickname == nickname);
+            if (neighbor != null) return neighbor;
             else
             {
                 UnableToLogInException ex = new UnableToLogInException("Impossible to log you in", "The nickname entered doesn't exist within the database");
-                ex.Data.Add("TimeStamp",String.Format("An error occured at ",DateTime.Now));
+                ex.Data.Add("TimeStamp", String.Format("An error occured at ", DateTime.Now));
                 ex.Data.Add("Cause", $"The nickname {nickname} is unknown");
                 throw ex;
             }

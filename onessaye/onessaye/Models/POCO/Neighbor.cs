@@ -5,7 +5,7 @@ using System.Web;
 
 namespace onessaye.Models.POCO
 {
-    public class Neighbour:User
+    public class Neighbor:User
     {
         public List<Order> ListOrder { get; set; }
     }

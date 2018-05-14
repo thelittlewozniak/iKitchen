@@ -126,7 +126,7 @@
     <Compile Include="Models\POCO\Cook.cs" />
     <Compile Include="Models\POCO\Ingredient.cs" />
     <Compile Include="Models\POCO\LiquidIngredient.cs" />
-    <Compile Include="Models\POCO\Neighbour.cs" />
+    <Compile Include="Models\POCO\Neighbor.cs" />
     <Compile Include="Models\POCO\Order.cs" />
     <Compile Include="Models\POCO\Recipe.cs" />
     <Compile Include="Models\POCO\Schedule.cs" />

@@ -23,10 +23,26 @@ namespace onessaye.Controllers
             UserDAL dal = new UserDAL();
             try
             {
-                User user = dal.GetUser(Nickname);
-                if (user.Password == Password)
+                Cook cook = dal.GetCook(Nickname);
+                if(cook is null)
                 {
-                    return RedirectToAction("ProfilePage", "User", user);
+                    Neighbor neighbor = dal.GetNeighbor(Nickname);
+                    //User is a Neighbor
+                    if(neighbor.Password == Password)
+                    {
+                        return RedirectToAction("ProfilePageNeighbor", "User", neighbor);
+                    }
+                    else
+                    {
+                        errors.Add("The password entered is incorrect");
+                        ViewBag.Error = errors;
+                        return View("Index");
+                    }
+                }
+                //User is a Cook
+                else if (cook.Password == Password)
+                {
+                    return RedirectToAction("ProfilePageCook", "User", cook);
                 }
                 else
                 {

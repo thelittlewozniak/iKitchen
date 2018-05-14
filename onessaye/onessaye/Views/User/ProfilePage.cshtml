@@ -1,10 +1,12 @@
 ﻿@model onessaye.Views.ViewClasses.DisplayUserInformation
+@using onessaye.Models.POCO;
 
 @*Bisconti Flavian*@
 
-<div>
+@if (Model.User is Cook)
+{<div>
     <a href="~/Recipe/DisplayRecipeForm">Add a new recipe</a>
-</div>
+</div>}
 
 <h2>Profile</h2>
 <div>

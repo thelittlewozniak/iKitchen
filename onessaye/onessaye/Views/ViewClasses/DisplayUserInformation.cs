@@ -15,9 +15,14 @@ namespace onessaye.Views.ViewClasses
         {
             "Nickname", "Last name", "First name", "Gender", "Age", "Email", "Registered since" 
         };
-        public DisplayUserInformation(User u)
+        public DisplayUserInformation(Cook user)
         {
-            User = u;
+            User = user;
+            BuildTabInfos();
+        }
+        public DisplayUserInformation(Neighbor user)
+        {
+            User = user;
             BuildTabInfos();
         }
         //Purpose : making the display of the information easier on the cook profile page

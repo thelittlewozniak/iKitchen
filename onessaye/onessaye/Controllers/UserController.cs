@@ -14,10 +14,15 @@ namespace onessaye.Controllers
     public class UserController : Controller
     {
         // GET: Cook
-        public ActionResult ProfilePage(User user)
+        public ActionResult ProfilePageCook(Cook user)
         {
             DisplayUserInformation info = new DisplayUserInformation(user);
-            return View(info);
+            return View("ProfilePage",info);
+        }
+        public ActionResult ProfilePageNeighbor(Neighbor user)
+        {
+            DisplayUserInformation info = new DisplayUserInformation(user);
+            return View("ProfilePage",info);
         }
     }
 }
