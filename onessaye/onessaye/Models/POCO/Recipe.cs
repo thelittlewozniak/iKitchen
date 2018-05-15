@@ -47,7 +47,8 @@ namespace onessaye.Models.POCO
         }
         public override string ToString()
         {
-            return $"{Name} added the {Date.ToString()}";
+            string SP = string.Format("{0:00.00}", SellingPrice);
+            return $"{Name} for {SP} euros added the {Date.ToString()}";
         }
     }
 }
