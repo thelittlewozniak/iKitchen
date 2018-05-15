@@ -16,7 +16,6 @@ namespace onessaye.Models.DAL
         {
             dbc = new DbConnection();
         }
-        //Methods
-        
+        //Methods 
     }
 }

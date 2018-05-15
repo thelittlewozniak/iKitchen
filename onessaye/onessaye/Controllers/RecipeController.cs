@@ -112,9 +112,10 @@ namespace onessaye.Controllers
             //View redirection
             if (ok)
             {
-                ViewBag.Type = type;
+                UserDAL dalU = new UserDAL();
+                RecipeDAL dalR = new RecipeDAL();
                 Recipe recipe = new Recipe(name, type);
-                for(int i=0;i<ingredient.Count;i++)
+                for (int i=0;i<ingredient.Count;i++)
                 {
                     //RecipeDAL dalI = new RecipeDAL();
                     switch(unit[i])
@@ -123,36 +124,36 @@ namespace onessaye.Controllers
                             {
                                 SolidIngredient ing = new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalI.AddIngredient(recipe,ing);
+                                //dalR.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "ml":
                             {
                                 LiquidIngredient ing = new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalI.AddIngredient(recipe,ing);
+                                //dalR.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "teaspoon":
                             {
                                 TeaspoonIngredient ing = new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalI.AddIngredient(recipe,ing);
+                                //dalR.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "unit":
                             {
                                 UnitIngredient ing = new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalI.AddIngredient(recipe,ing);
+                                //dalR.AddIngredient(recipe, ing);
                                 break;
                             }
                     }
                 }
-                UserDAL dalU = new UserDAL();
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
                 dalU.AddRecipe(cook_nickname, recipe);
+                //dalR.AddPricesToRecipe(cook_nickname, recipe.CostPrice, recipe.SellingPrice);
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View(d);
             }

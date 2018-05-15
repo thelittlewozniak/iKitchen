@@ -21,14 +21,14 @@
 </div>
 @if (Model.User is Cook)
 {
-    <div>
-        @Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })
-        <h4>Your recipes</h4>
+<div>
+    @Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })
+    <h4>Your recipes</h4>
         <ul>
             @foreach (Recipe recipe in l_recipes)
             {
                 <li>@recipe</li>
             }
         </ul>
-    </div>
+</div>
 }
