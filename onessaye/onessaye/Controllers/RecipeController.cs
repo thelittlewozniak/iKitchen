@@ -176,5 +176,11 @@ namespace onessaye.Controllers
             Cook user = dal.GetCook(cook_nickname);
             return RedirectToAction("ProfilePageCook", "User", user);
         }
+        public ActionResult Catalogue()
+        {
+            RecipeDAL dal = new RecipeDAL();
+            ViewBag.Catalogue = dal.GetRecipes();
+            return View();
+        }
     }
 }

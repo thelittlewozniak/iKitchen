@@ -17,6 +17,10 @@ namespace onessaye.Models.DAL
         {
             dbc = new DbConnection();
         }
+        public Array GetRecipes()
+        {
+            return dbc.DbRecipe.ToArray();
+        }
         //Methods
         //public void AddIngredient(Recipe r, Ingredient i)
         //{

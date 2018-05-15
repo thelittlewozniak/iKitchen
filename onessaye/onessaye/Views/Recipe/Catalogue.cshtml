@@ -1,0 +1,21 @@
+﻿@using onessaye.Models.POCO;
+
+<div>
+    <table border="1">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Price</th>
+            <th>Date</th>
+        </tr>
+        @foreach (Recipe recipe in ViewBag.Catalogue)
+        {
+            <tr>
+                <td>@recipe.Name</td>
+                <td>@recipe.Type</td>
+                <td>@recipe.SellingPrice</td>
+                <td>@recipe.Date.ToString()</td>
+            </tr>
+        }
+    </table>
+</div>
