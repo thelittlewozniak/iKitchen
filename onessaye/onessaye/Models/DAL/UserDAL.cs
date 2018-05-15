@@ -45,12 +45,16 @@ namespace onessaye.Models.DAL
             dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).AddRecipe(recipe);
             dbc.SaveChanges();
         }
-        public List<Recipe> GetRecipesOfCook(Cook cook)
+        public List<Recipe> GetRecipes(Cook cook)
         {
             List<Recipe> L_Recipes = new List<Recipe>();
             Cook Cook = dbc.DbCook.SingleOrDefault(c => c.Nickname == cook.Nickname);
             L_Recipes = Cook.ListRecipes;
             return L_Recipes;
+        }
+        public Recipe GetLastRecipe(string cook_nickname)
+        {
+            return dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).ListRecipes.Last();
         }
         public Array GetRecipes()
         {

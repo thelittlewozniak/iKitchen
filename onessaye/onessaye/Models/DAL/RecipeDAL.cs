@@ -17,6 +17,12 @@ namespace onessaye.Models.DAL
         {
             dbc = new DbConnection();
         }
+        //Methods
+        public void AddIngredient(Recipe r, Ingredient i)
+        {
+            dbc.DbRecipe.SingleOrDefault(recipe => recipe.Id == r.Id).AddIngredient(i);
+            dbc.SaveChanges();
+        }
         public Array GetRecipes()
         {
             return dbc.DbRecipe.ToArray();
@@ -25,17 +31,13 @@ namespace onessaye.Models.DAL
         {
             return dbc.DbRecipe.SingleOrDefault(r => r.Id == id);
         }
-        //Methods
-        //public void AddIngredient(Recipe r, Ingredient i)
-        //{
-        //    dbc.DbRecipe.SingleOrDefault(recipe => recipe.Id == r.Id).AddIngredient(i);
-        //    dbc.SaveChanges();
-        //}
-        //public void AddPricesToRecipe(string cook_nickname, float cost_price, float selling_price)
-        //{
-        //    dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).ListRecipes.Last().CostPrice = cost_price;
-        //    dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).ListRecipes.Last().SellingPrice = selling_price;
-        //    dbc.SaveChanges();
-        //}
+        public List<Ingredient> GetIngredients(int id)
+        {
+            return dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients;
+        }
+        public Array GetIngredients()
+        {
+            return dbc.DbRecipe.ToArray();
+        }
     }
 }

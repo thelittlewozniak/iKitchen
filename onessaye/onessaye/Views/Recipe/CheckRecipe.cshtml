@@ -3,14 +3,12 @@
 
 @*Bisconti Flavian*@
 
-<p><a href="~/Home/Index">Log Out</a></p>
-
 <div>
     <p><b>Name : </b>@Model.r.Name</p>
     <p><b>Type : </b>@Model.r.Type</p>
     <h4>List of ingredients</h4>
     <ul>
-        @foreach (Ingredient ing in Model.r.ListIngredients)
+        @foreach (Ingredient ing in ViewBag.ListIngredients)
         {
             <li>@ing</li>
         }

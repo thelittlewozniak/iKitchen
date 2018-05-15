@@ -26,7 +26,7 @@ namespace onessaye.Models.POCO
             Date = DateTime.Now;
             ListIngredients = new List<Ingredient>();
         }
-        public Recipe() { }
+        public Recipe() { ListIngredients = new List<Ingredient>(); }
         //Methods
         public void AddIngredient(Ingredient i)
         {

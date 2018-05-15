@@ -118,35 +118,30 @@ namespace onessaye.Controllers
                 Recipe recipe = new Recipe(name, type);
                 for (int i=0;i<ingredient.Count;i++)
                 {
-                    //RecipeDAL dalI = new RecipeDAL();
                     switch(unit[i])
                     {
                         case "g":
                             {
                                 SolidIngredient ing = new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalR.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "ml":
                             {
                                 LiquidIngredient ing = new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalR.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "teaspoon":
                             {
                                 TeaspoonIngredient ing = new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalR.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "unit":
                             {
                                 UnitIngredient ing = new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                //dalR.AddIngredient(recipe, ing);
                                 break;
                             }
                     }
@@ -154,7 +149,11 @@ namespace onessaye.Controllers
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
                 dalU.AddRecipe(cook_nickname, recipe);
-                //dalR.AddPricesToRecipe(cook_nickname, recipe.CostPrice, recipe.SellingPrice);
+                Recipe lastEntry = dalU.GetLastRecipe(cook_nickname);
+                foreach(Ingredient ing in recipe.ListIngredients)
+                {
+                    dalR.AddIngredient(lastEntry, ing);
+                }
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View("ConfirmedRecipe",d);
             }
@@ -186,6 +185,8 @@ namespace onessaye.Controllers
         {
             RecipeDAL dal = new RecipeDAL();
             Recipe r = dal.GetRecipe(id_recipe);
+            ViewBag.ListIngredients = dal.GetIngredients(id_recipe);
+            ViewBag.test = dal.GetIngredients();
             DisplayRecipeInformation d = new DisplayRecipeInformation(r);
             return View(d);
         }
