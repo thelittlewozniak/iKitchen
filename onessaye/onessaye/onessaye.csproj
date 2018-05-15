@@ -149,10 +149,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
     <Content Include="Views\Recipe\RecipeForm.cshtml" />
-    <Content Include="Views\Recipe\CheckRecipe.cshtml" />
+    <Content Include="Views\Recipe\ConfirmedRecipe.cshtml" />
     <Content Include="Views\User\ProfilePage.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
     <Content Include="Views\Recipe\Catalogue.cshtml" />
+    <Content Include="Views\Recipe\CheckRecipe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

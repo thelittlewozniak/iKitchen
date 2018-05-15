@@ -156,7 +156,7 @@ namespace onessaye.Controllers
                 dalU.AddRecipe(cook_nickname, recipe);
                 //dalR.AddPricesToRecipe(cook_nickname, recipe.CostPrice, recipe.SellingPrice);
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
-                return View(d);
+                return View("ConfirmedRecipe",d);
             }
             else
             {
@@ -181,6 +181,13 @@ namespace onessaye.Controllers
             RecipeDAL dal = new RecipeDAL();
             ViewBag.Catalogue = dal.GetRecipes();
             return View();
+        }
+        public ActionResult CheckRecipe(int id_recipe)
+        {
+            RecipeDAL dal = new RecipeDAL();
+            Recipe r = dal.GetRecipe(id_recipe);
+            DisplayRecipeInformation d = new DisplayRecipeInformation(r);
+            return View(d);
         }
     }
 }

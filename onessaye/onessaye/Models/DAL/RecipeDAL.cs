@@ -21,6 +21,10 @@ namespace onessaye.Models.DAL
         {
             return dbc.DbRecipe.ToArray();
         }
+        public Recipe GetRecipe(int id)
+        {
+            return dbc.DbRecipe.SingleOrDefault(r => r.Id == id);
+        }
         //Methods
         //public void AddIngredient(Recipe r, Ingredient i)
         //{

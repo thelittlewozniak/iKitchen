@@ -5,6 +5,8 @@
 
 <p><a href="~/Home/Index">Log Out</a></p>
 
+<h3>Your recipe has been added successfully</h3>
+
 <div>
     <p><b>Name : </b>@Model.r.Name</p>
     <p><b>Type : </b>@Model.r.Type</p>
@@ -29,5 +31,5 @@
             <td>@Model.ReturnSellingPrice()</td>
         </tr>
     </table>
-    <p>@Html.ActionLink("Back to your profile", "BackToProfilePage", new { cook_nickname = ViewBag.Cook })</p>
+    <p>@Html.ActionLink("Back to your profile", "BackToProfilePage", new { cook_nickname = ViewBag.Cook})</p>
 </div>

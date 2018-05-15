@@ -15,6 +15,7 @@
                 <td>@recipe.Type</td>
                 <td>@recipe.SellingPrice</td>
                 <td>@recipe.Date.ToString()</td>
+                <td>@Html.ActionLink("Description","CheckRecipe",new { id_recipe = recipe.Id })</td>
             </tr>
         }
     </table>
