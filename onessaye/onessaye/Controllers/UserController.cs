@@ -25,7 +25,7 @@ namespace onessaye.Controllers
         public ActionResult ProfilePageNeighbor(Neighbor user)
         {
             DisplayUserInformation info = new DisplayUserInformation(user);
-            return View("ProfilePage",info);
+            return View("ProfilePage", info);
         }
     }
 }

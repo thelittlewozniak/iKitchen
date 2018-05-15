@@ -109,6 +109,7 @@ namespace onessaye.Controllers
                 ok = false;
                 error.Add("The amount of the ingredients quantified in ml or g must be defined between 10 and 500");
             }
+            ViewBag.Cook = cook_nickname;
             //View redirection
             if (ok)
             {
@@ -160,7 +161,6 @@ namespace onessaye.Controllers
             else
             {
                 ViewBag.Name = name;
-                ViewBag.Cook = cook_nickname;
                 ViewBag.ListIngredients = ingredient;
                 ViewBag.ListAmounts = amount;
                 ViewBag.ListPrices = price;
@@ -169,6 +169,12 @@ namespace onessaye.Controllers
                 ViewBag.ListErrors = error;
                 return View("RecipeForm");
             }
+        }
+        public ActionResult BackToProfilePage(string cook_nickname)
+        {
+            UserDAL dal = new UserDAL();
+            Cook user = dal.GetCook(cook_nickname);
+            return RedirectToAction("ProfilePageCook", "User", user);
         }
     }
 }

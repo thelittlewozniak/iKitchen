@@ -59,7 +59,7 @@
         <br />
         <input type="text" value="@cook" name="cook_nickname" hidden />
         <input type="submit" value="Create recipe" /> 
-        @Html.RouteLink("Reset Form", "RecipeForm", new { Cook = cook})
+        @Html.ActionLink("Reset Form", "DisplayRecipeForm", new { Cook = cook})
     </fieldset>
     }
 </div>

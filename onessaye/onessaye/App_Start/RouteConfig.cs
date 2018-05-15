@@ -24,14 +24,6 @@ namespace onessaye
                 url: "Recipe/DisplayRecipeForm/{Cook}/{NbIngredients}",
                 defaults: new { controller = "Recipe", action = "DisplayRecipeForm", NbIngredients = UrlParameter.Optional});
 
-            routes.MapRoute(
-                name: "RecipeForm",
-                url: "Recipe/DisplayRecipeForm");
-
-            routes.MapRoute(
-                name: "AcceptRecipe",
-                url: "Cook/AcceptedRecipe/{id}",
-                defaults: new { id = UrlParameter.Optional });
         }
     }
 }

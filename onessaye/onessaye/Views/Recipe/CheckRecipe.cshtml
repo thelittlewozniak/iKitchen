@@ -29,5 +29,5 @@
             <td>@Model.ReturnSellingPrice()</td>
         </tr>
     </table>
-    <p><a href="~/Recipe/DisplayRecipeForm">Add another recipe</a></p>
+    <p>@Html.ActionLink("Back to your profile", "BackToProfilePage", new { cook_nickname = ViewBag.Cook})</p>
 </div>
