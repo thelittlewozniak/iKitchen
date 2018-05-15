@@ -26,6 +26,7 @@ namespace onessaye.Models.POCO
             Date = DateTime.Now;
             ListIngredients = new List<Ingredient>();
         }
+        public Recipe() { }
         //Methods
         public void AddIngredient(Ingredient i)
         {
@@ -46,7 +47,7 @@ namespace onessaye.Models.POCO
         }
         public override string ToString()
         {
-            return $"{Name} added the {Date.ToString()} ({ListIngredients.Count} ingredients)";
+            return $"{Name} added the {Date.ToString()}";
         }
     }
 }

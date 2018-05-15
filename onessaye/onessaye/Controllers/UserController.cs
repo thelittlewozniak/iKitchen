@@ -16,6 +16,9 @@ namespace onessaye.Controllers
         // GET: Cook
         public ActionResult ProfilePageCook(Cook user)
         {
+            UserDAL dal = new UserDAL();
+            ViewBag.ListRecipes = dal.GetRecipesOfCook(user);
+            ViewBag.test = dal.GetRecipes();
             DisplayUserInformation info = new DisplayUserInformation(user);
             return View("ProfilePage",info);
         }

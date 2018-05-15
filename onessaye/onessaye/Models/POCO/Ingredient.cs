@@ -21,6 +21,7 @@ namespace onessaye.Models.POCO
             Amount = a;
             UnitPrice = up;
         }
+        public Ingredient() { }
         //Methods
         public abstract float CalculCostIngredient();
     }

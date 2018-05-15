@@ -18,26 +18,10 @@ namespace onessaye.Models.DAL
             dbc = new DbConnection();
         }
         //Methods
-        public void AddRecipe(string cook_nickname, Recipe recipe)
+        public void AddIngredient(Recipe r, Ingredient i)
         {
-            dbc.DbRecipe.Add(recipe);
-            dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).AddRecipe(recipe);
+            dbc.DbRecipe.SingleOrDefault(recipe => recipe.Id == r.Id).AddIngredient(i);
             dbc.SaveChanges();
-        }
-        public List<Recipe> GetRecipesOfCook(Cook cook)
-        {
-            List<Recipe> L_Recipes = new List<Recipe>();
-            if (cook.ListRecipes != null)
-            {
-                foreach (Recipe r1 in cook.ListRecipes)
-                {
-                    foreach (Recipe r2 in dbc.DbRecipe)
-                    {
-                        if (r1.Id == r2.Id) L_Recipes.Add(r1);
-                    }
-                }
-            }
-            return L_Recipes;
         }
     }
 }

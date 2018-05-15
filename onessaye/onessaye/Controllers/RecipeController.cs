@@ -116,43 +116,43 @@ namespace onessaye.Controllers
                 Recipe recipe = new Recipe(name, type);
                 for(int i=0;i<ingredient.Count;i++)
                 {
-                    IngredientDAL dalI = new IngredientDAL();
+                    //RecipeDAL dalI = new RecipeDAL();
                     switch(unit[i])
                     {
                         case "g":
                             {
                                 SolidIngredient ing = new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                dalI.AddIngredient(ing);
+                                //dalI.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "ml":
                             {
                                 LiquidIngredient ing = new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                dalI.AddIngredient(ing);
+                                //dalI.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "teaspoon":
                             {
                                 TeaspoonIngredient ing = new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                dalI.AddIngredient(ing);
+                                //dalI.AddIngredient(recipe,ing);
                                 break;
                             }
                         case "unit":
                             {
                                 UnitIngredient ing = new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
                                 recipe.AddIngredient(ing);
-                                dalI.AddIngredient(ing);
+                                //dalI.AddIngredient(recipe,ing);
                                 break;
                             }
                     }
                 }
-                RecipeDAL dalR = new RecipeDAL();
+                UserDAL dalU = new UserDAL();
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
-                dalR.AddRecipe(cook_nickname, recipe);
+                dalU.AddRecipe(cook_nickname, recipe);
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View(d);
             }

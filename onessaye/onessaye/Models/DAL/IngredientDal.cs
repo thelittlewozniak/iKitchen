@@ -17,10 +17,6 @@ namespace onessaye.Models.DAL
             dbc = new DbConnection();
         }
         //Methods
-        public void AddIngredient(Ingredient i)
-        {
-            dbc.DbIngredient.Add(i);
-            dbc.SaveChanges();
-        }
+        
     }
 }

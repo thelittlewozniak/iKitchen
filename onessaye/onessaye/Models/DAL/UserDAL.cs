@@ -40,5 +40,22 @@ namespace onessaye.Models.DAL
                 throw ex;
             }
         }
+        public void AddRecipe(string cook_nickname, Recipe recipe)
+        {
+            dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).AddRecipe(recipe);
+            dbc.SaveChanges();
+        }
+        public List<Recipe> GetRecipesOfCook(Cook cook)
+        {
+            List<Recipe> L_Recipes = new List<Recipe>();
+            Cook Cook = dbc.DbCook.SingleOrDefault(c => c.Nickname == cook.Nickname);
+            L_Recipes = Cook.ListRecipes;
+            return L_Recipes;
+        }
+        public Array GetRecipes()
+        {
+            Array test = dbc.DbRecipe.ToArray();
+            return test;
+        }
     }
 }

@@ -1,14 +1,11 @@
 ﻿@model onessaye.Views.ViewClasses.DisplayUserInformation
 @using onessaye.Models.POCO;
 
-@*Bisconti Flavian*@
-
-@if (Model.User is Cook)
-{
-<div>
-    @Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })
-</div>
+@{
+    List<Recipe> l_recipes = ViewBag.ListRecipes;
 }
+
+@*Bisconti Flavian*@
 
 <h2>Profile</h2>
 <div>
@@ -22,3 +19,16 @@
         }
     </table>
 </div>
+@if (Model.User is Cook)
+{
+    <div>
+        @Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })
+        <h4>Your recipes</h4>
+        <ul>
+            @foreach (Recipe recipe in l_recipes)
+            {
+                <li>@recipe</li>
+            }
+        </ul>
+    </div>
+}
