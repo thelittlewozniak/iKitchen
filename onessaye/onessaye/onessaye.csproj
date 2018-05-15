@@ -151,6 +151,7 @@
     <Content Include="Views\Recipe\RecipeForm.cshtml" />
     <Content Include="Views\Recipe\CheckRecipe.cshtml" />
     <Content Include="Views\User\ProfilePage.cshtml" />
+    <Content Include="Views\Shared\_Footer.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
