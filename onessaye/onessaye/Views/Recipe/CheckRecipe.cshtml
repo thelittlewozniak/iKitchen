@@ -8,7 +8,7 @@
     <p><b>Type : </b>@Model.r.Type</p>
     <h4>List of ingredients</h4>
     <ul>
-        @foreach (Ingredient ing in ViewBag.ListIngredients)
+        @foreach (Ingredient ing in Model.r.ListIngredients)
         {
             <li>@ing</li>
         }
@@ -27,5 +27,4 @@
             <td>@Model.ReturnSellingPrice()</td>
         </tr>
     </table>
-    <p>@Html.ActionLink("Back to your profile", "BackToProfilePage", new { cook_nickname = ViewBag.Cook })</p>
 </div>

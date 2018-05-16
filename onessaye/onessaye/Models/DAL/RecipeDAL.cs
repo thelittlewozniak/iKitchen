@@ -18,11 +18,6 @@ namespace onessaye.Models.DAL
             dbc = new DbConnection();
         }
         //Methods
-        public void AddIngredient(Recipe r, Ingredient i)
-        {
-            dbc.DbRecipe.SingleOrDefault(recipe => recipe.Id == r.Id).AddIngredient(i);
-            dbc.SaveChanges();
-        }
         public Array GetRecipes()
         {
             return dbc.DbRecipe.ToArray();
@@ -34,10 +29,6 @@ namespace onessaye.Models.DAL
         public List<Ingredient> GetIngredients(int id)
         {
             return dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients;
-        }
-        public Array GetIngredients()
-        {
-            return dbc.DbRecipe.ToArray();
         }
     }
 }

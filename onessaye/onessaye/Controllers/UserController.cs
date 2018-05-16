@@ -27,5 +27,11 @@ namespace onessaye.Controllers
             DisplayUserInformation info = new DisplayUserInformation(user);
             return View("ProfilePage", info);
         }
+        public ActionResult DeleteRecipe(int id_recipe)
+        {
+            UserDAL dal = new UserDAL();
+            dal.DeleteRecipe(id_recipe);
+            return RedirectToRoute("DeletedRecipe");
+        }
     }
 }

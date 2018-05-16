@@ -24,6 +24,9 @@ namespace onessaye
                 url: "Recipe/DisplayRecipeForm/{Cook}/{NbIngredients}",
                 defaults: new { controller = "Recipe", action = "DisplayRecipeForm", NbIngredients = UrlParameter.Optional});
 
+            routes.MapRoute(
+                name: "DeletedRecipe",
+                url: "Recipe/DeleteRecipe");
         }
     }
 }

@@ -61,5 +61,12 @@ namespace onessaye.Models.DAL
             Array test = dbc.DbRecipe.ToArray();
             return test;
         }
+        public void DeleteRecipe(int id)
+        {
+            dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients.Clear();
+            dbc.SaveChanges();
+            dbc.DbRecipe.Remove(dbc.DbRecipe.SingleOrDefault(r => r.Id == id));
+            dbc.SaveChanges();
+        }
     }
 }

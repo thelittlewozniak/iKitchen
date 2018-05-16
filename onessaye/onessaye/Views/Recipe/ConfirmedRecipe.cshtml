@@ -6,30 +6,7 @@
 <p><a href="~/Home/Index">Log Out</a></p>
 
 <h3>Your recipe has been added successfully</h3>
-
+@Html.Partial("CheckRecipe")
 <div>
-    <p><b>Name : </b>@Model.r.Name</p>
-    <p><b>Type : </b>@Model.r.Type</p>
-    <h4>List of ingredients</h4>
-    <ul>
-        @foreach (Ingredient ing in Model.r.ListIngredients)
-        {
-            <li>@ing</li>
-        }
-    </ul>
-    <table border="1">
-        <tr>
-            <th>Cost price</th>
-            <td>@Model.ReturnCostPrice()</td>
-        </tr>
-        <tr>
-            <td><i>TVA</i></td>
-            <td>+0,05%</td>
-        </tr>
-        <tr>
-            <th>Selling price</th>
-            <td>@Model.ReturnSellingPrice()</td>
-        </tr>
-    </table>
     <p>@Html.ActionLink("Back to your profile", "BackToProfilePage", new { cook_nickname = ViewBag.Cook})</p>
 </div>

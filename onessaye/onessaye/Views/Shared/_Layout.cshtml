@@ -5,7 +5,7 @@
 </head>
 <body>
     <p><img alt="IKitchen Logo" src="~/Content/Images/logo.jpg" /></p>
-    <p><a href="~/Recipe/Catalogue">Catalogue</a></p>
+    <p><input action="action" onclick="window.history.go(-1); return false;" type="button" value="Back" /> | <a href="~/Recipe/Catalogue">Catalogue</a> | <a href="~/Home/Index">Connexion page</a></p>
     <div>
         @RenderBody()
     </div>

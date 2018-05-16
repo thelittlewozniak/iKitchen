@@ -26,11 +26,15 @@
 <div>
     <p>@Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })</p>
     <h4>Your recipes</h4>
-        <ul>
+        <table>
             @foreach (Recipe recipe in l_recipes)
             {
-                <li>@recipe</li> 
+                <tr>
+                    <td>@recipe</td> 
+                    <td>@Html.ActionLink("Description","CheckRecipe","Recipe",new { id_recipe = recipe.Id },new { })</td> 
+                    <td>@Html.ActionLink("Delete","DeleteRecipe",new { id_recipe=recipe.Id})</td>
+                </tr>
             }
-        </ul>
+        </table>
 </div>
 }

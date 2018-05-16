@@ -96,7 +96,7 @@ namespace onessaye.Controllers
                 else
                 {
                     bool isDouble = double.TryParse(amount[i], out double inter);
-                    if (!isDouble || inter < 10 || inter > 500 || amount[i] is null) incorrectAmountDouble = true;
+                    if (!isDouble || inter < 10 || inter > 1000 || amount[i] is null) incorrectAmountDouble = true;
                 }
             }
             if(incorrectAmountInt)
@@ -107,7 +107,7 @@ namespace onessaye.Controllers
             if(incorrectAmountDouble)
             {
                 ok = false;
-                error.Add("The amount of the ingredients quantified in ml or g must be defined between 10 and 500");
+                error.Add("The amount of the ingredients quantified in ml or g must be defined between 10 and 1000");
             }
             ViewBag.Cook = cook_nickname;
             //View redirection
@@ -149,11 +149,6 @@ namespace onessaye.Controllers
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
                 dalU.AddRecipe(cook_nickname, recipe);
-                Recipe lastEntry = dalU.GetLastRecipe(cook_nickname);
-                foreach(Ingredient ing in recipe.ListIngredients)
-                {
-                    dalR.AddIngredient(lastEntry, ing);
-                }
                 DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
                 return View("ConfirmedRecipe",d);
             }
@@ -185,10 +180,12 @@ namespace onessaye.Controllers
         {
             RecipeDAL dal = new RecipeDAL();
             Recipe r = dal.GetRecipe(id_recipe);
-            ViewBag.ListIngredients = dal.GetIngredients(id_recipe);
-            ViewBag.test = dal.GetIngredients();
             DisplayRecipeInformation d = new DisplayRecipeInformation(r);
             return View(d);
+        }
+        public ActionResult DeleteRecipe()
+        {
+            return View();
         }
     }
 }
