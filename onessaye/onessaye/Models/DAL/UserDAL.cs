@@ -56,10 +56,9 @@ namespace onessaye.Models.DAL
         {
             return dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).ListRecipes.Last();
         }
-        public Array GetRecipes()
+        public List<Recipe> GetRecipes()
         {
-            Array test = dbc.DbRecipe.ToArray();
-            return test;
+            return dbc.DbRecipe.ToList();
         }
         public void DeleteRecipe(int id)
         {
