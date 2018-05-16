@@ -52,10 +52,6 @@ namespace onessaye.Models.DAL
             L_Recipes = Cook.ListRecipes;
             return L_Recipes;
         }
-        public Recipe GetLastRecipe(string cook_nickname)
-        {
-            return dbc.DbCook.SingleOrDefault(c => c.Nickname == cook_nickname).ListRecipes.Last();
-        }
         public List<Recipe> GetRecipes()
         {
             return dbc.DbRecipe.ToList();

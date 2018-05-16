@@ -26,9 +26,5 @@ namespace onessaye.Models.DAL
         {
             return dbc.DbRecipe.SingleOrDefault(r => r.Id == id);
         }
-        public List<Ingredient> GetIngredients(int id)
-        {
-            return dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients;
-        }
     }
 }
