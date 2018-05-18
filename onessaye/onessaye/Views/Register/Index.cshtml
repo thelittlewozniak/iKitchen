@@ -1,0 +1,46 @@
+﻿@model onessaye.Models.POCO.User
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<fieldset>
+    @using (Html.BeginForm("Register", "Register", "post"))
+    {
+        <legend>Create an account</legend>
+        @Html.LabelFor(model => model.Nickname)
+        @Html.TextBoxFor(model => model.Nickname, new { Required = "Required" })
+        <br />
+        @Html.LabelFor(model => model.FirstName)
+        @Html.TextBoxFor(model => model.FirstName, new { Required = "Required" })
+        <br />
+        @Html.LabelFor(model => model.LastName)
+        @Html.TextBoxFor(model => model.LastName, new { Required = "Required" })
+        <br />
+        @Html.LabelFor(model => model.Email)
+        @Html.TextBoxFor(model => model.Email, new { Required = "Required" })
+        <br />
+        @Html.LabelFor(model => model.Gender)
+        <div class="radio">
+            @Html.Label("Male")
+            @Html.RadioButtonFor(model => model.Gender, "Male")
+            @Html.Label("Female")
+            @Html.RadioButtonFor(model => model.Gender, "Female")
+        </div>
+        <br />
+        @Html.LabelFor(model => model.Age)
+        @Html.TextBoxFor(model => model.Age, new { Required = "Required" })
+        <br />
+        <div class="radio">
+            @Html.Label("Neighbour")
+            @Html.RadioButton("Type","Neighbour")
+            @Html.Label("Cook")
+            @Html.RadioButton("Type","Cook")
+        </div>
+        @Html.LabelFor(model => model.Password)
+        @Html.TextBoxFor(model => model.Password, new { Required = "Required", Type = "password" })
+        <br />
+        <input type="submit" value="Register" />
+    }
+
+</fieldset>
