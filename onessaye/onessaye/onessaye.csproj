@@ -124,6 +124,7 @@
     <Compile Include="Models\POCO\Catalog.cs" />
     <Compile Include="Models\POCO\Comment.cs" />
     <Compile Include="Models\POCO\Cook.cs" />
+    <Compile Include="Models\POCO\Date.cs" />
     <Compile Include="Models\POCO\Ingredient.cs" />
     <Compile Include="Models\POCO\LiquidIngredient.cs" />
     <Compile Include="Models\POCO\Neighbor.cs" />
