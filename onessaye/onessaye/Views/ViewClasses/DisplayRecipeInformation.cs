@@ -17,7 +17,7 @@ namespace onessaye.Views.ViewClasses
         }
         public string ReturnCostPrice()
         {
-            return String.Format("{0:00.00}",r.CostPrice);
+            return String.Format("{0:00.00}", r.CostPrice);
         }
         public string ReturnSellingPrice()
         {
@@ -25,7 +25,11 @@ namespace onessaye.Views.ViewClasses
         }
         public string ReturnDate()
         {
-            return String.Format("{0:d}",r.Date);
+            return String.Format("{0:d}", r.Date);
+        }
+        public string ReturnAvailableDate()
+        {
+            return r.AvailableDate.ToString();
         }
     }
 }

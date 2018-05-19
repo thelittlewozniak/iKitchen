@@ -14,5 +14,6 @@ namespace onessaye
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
+        public void Session_OnStart() => Session["listdate"] = null;
     }
 }

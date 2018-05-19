@@ -19,9 +19,10 @@ namespace onessaye.Controllers
             return View();
         }
         [HttpGet]
-        public ActionResult DisplayRecipeForm(string Cook, string NbIngredients="3")
+        public ActionResult DisplayRecipeForm(string Cook, int nbrDate=1, string NbIngredients="3")
         {
             int nbi = Convert.ToInt32(NbIngredients);
+            int nbd = nbrDate;
             if (nbi < 3) nbi = 3; //Can't have less than 3 ingredients neither more than 20
             if (nbi > 20) nbi = 20; //Can't have more than 20 ingredients
             ViewBag.NbIngredients = nbi;
@@ -31,17 +32,29 @@ namespace onessaye.Controllers
             string[] ListAmounts = new string[nbi];
             for (int i = 0; i < nbi; i++)
             {
-                ListIngredients[i] = "";
-                ListPrices[i] = "";
+                ListIngredients[i] = " ";
+                ListPrices[i] = " ";
+            }
+            //Nathan Pire
+                List<string>ListDateSite = new List<string>();
+                List<string> ListDateQ = new List<string>();
+                ListDateSite.Add("");
+            for(int j=0;j<nbd;j++)
+            { 
+                ListDateSite.Add("");
+                ListDateQ.Add("");
             }
             ViewBag.ListIngredients = ListIngredients;
             ViewBag.ListPrices = ListPrices;
             ViewBag.ListAmounts = ListAmounts;
             ViewBag.Cook = Cook;
+            ViewBag.ListDate = ListDateSite;
+            ViewBag.ListQ = ListDateQ;
+            ViewBag.nbd = nbd;
             return View("RecipeForm");
         }
         [HttpPost]
-        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string> unit,List<string>price, string type, string cook_nickname)
+        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string> unit,List<string>price, string type, string cook_nickname, List<string> date,List<string>quantity)
         {
             //Checking
             List<string> error = new List<string>();
@@ -145,6 +158,11 @@ namespace onessaye.Controllers
                                 break;
                             }
                     }
+                }
+                for(int i=0;i<date.Count;i++)
+                {
+                    Date dat = new Date(Convert.ToDateTime(date[i]), Convert.ToInt32(quantity[i]));
+                    recipe.AvailableDate.AddDate(dat);
                 }
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();
