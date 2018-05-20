@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-//Bisconti Flavian
+//Bisconti Flavian & Nathan Pire for schedule
 
 namespace onessaye.Models.POCO
 {
@@ -27,6 +27,17 @@ namespace onessaye.Models.POCO
             Date = DateTime.Now;
             ListIngredients = new List<Ingredient>();
             Schedules = new Schedule();
+        }
+        public Recipe(string name,string type,float costPrice,float SellingPrice,DateTime Date,List<Ingredient> ListIngredients,List<Comment> ListComments,Schedule Schedules)
+        {
+            this.Name = name;
+            this.Type = type;
+            this.CostPrice = costPrice;
+            this.SellingPrice = SellingPrice;
+            this.Date = Date;
+            this.ListIngredients = ListIngredients;
+            this.ListComments = ListComments;
+            this.Schedules = Schedules;
         }
         public Recipe() { ListIngredients = new List<Ingredient>(); }
         //Methods
