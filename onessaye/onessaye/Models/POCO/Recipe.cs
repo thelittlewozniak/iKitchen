@@ -18,7 +18,7 @@ namespace onessaye.Models.POCO
         public DateTime Date { get; set; }
         public List<Ingredient> ListIngredients { get; set; }
         public List<Comment> ListComments { get; set; }
-        public Schedule AvailableDate { get; set; }
+        public Schedule Schedules { get; set; }
         //Builder
         public Recipe(string name, string type)
         {
@@ -26,7 +26,7 @@ namespace onessaye.Models.POCO
             Type = type;
             Date = DateTime.Now;
             ListIngredients = new List<Ingredient>();
-            AvailableDate = new Schedule();
+            Schedules = new Schedule();
         }
         public Recipe() { ListIngredients = new List<Ingredient>(); }
         //Methods

@@ -162,7 +162,7 @@ namespace onessaye.Controllers
                 for(int i=0;i<date.Count;i++)
                 {
                     Date dat = new Date(Convert.ToDateTime(date[i]), Convert.ToInt32(quantity[i]));
-                    recipe.AvailableDate.AddDate(dat);
+                    recipe.Schedules.AddDate(dat);
                 }
                 recipe.CostPrice = recipe.CalculCostPrice();
                 recipe.SellingPrice = recipe.CalculSellingPrice();

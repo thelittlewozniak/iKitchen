@@ -29,7 +29,7 @@ namespace onessaye.Views.ViewClasses
         }
         public string ReturnAvailableDate()
         {
-            return r.AvailableDate.ToString();
+            return r.Schedules.ToString();
         }
     }
 }
