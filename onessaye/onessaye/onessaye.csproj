@@ -117,12 +117,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DAL\DatesDB.cs" />
     <Compile Include="Models\DAL\DbConnection.cs" />
     <Compile Include="Models\DAL\IngredientDAL.cs" />
-    <Compile Include="Models\DAL\IngredientDb.cs" />
     <Compile Include="Models\DAL\RecipeDAL.cs" />
-    <Compile Include="Models\DAL\RecipeDb.cs" />
     <Compile Include="Models\DAL\UserDAL.cs" />
     <Compile Include="Models\EXCEPTIONS\UnableToLogInException.cs" />
     <Compile Include="Models\POCO\Catalog.cs" />

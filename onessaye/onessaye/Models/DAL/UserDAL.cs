@@ -54,14 +54,14 @@ namespace onessaye.Models.DAL
         }
         public List<Recipe> GetRecipes()
         {
-            return null; //dbc.DbRecipe.ToList();
+            return dbc.DbRecipe.ToList();
         }
         public void DeleteRecipe(int id)
         {
-            //dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients.Clear();
-            //dbc.SaveChanges();
-            //dbc.DbRecipe.Remove(dbc.DbRecipe.SingleOrDefault(r => r.Id == id));
-            //dbc.SaveChanges();
+            dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients.Clear();
+            dbc.SaveChanges();
+            dbc.DbRecipe.Remove(dbc.DbRecipe.SingleOrDefault(r => r.Id == id));
+            dbc.SaveChanges();
         }
     }
 }
