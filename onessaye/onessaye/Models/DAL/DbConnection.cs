@@ -9,10 +9,11 @@ namespace onessaye.Models.DAL
 {
     public class DbConnection : DbContext
     {
-        public DbSet<Recipe> DbRecipe { get; set; }
-        public DbSet<Ingredient> DbIngredient { get; set; }
+        public DbSet<RecipeDb> DbRecipe { get; set; }
         public DbSet<Cook> DbCook { get; set; }
         public DbSet<Neighbor> DbNeighbor { get; set; }
+        public DbSet<DatesDB> dbDate { get; set; }
+        public DbSet<IngredientDb> dbIngredient { get; set; }
         public DbConnection()
         {
             Database.SetInitializer(new DBContextInitializer());
