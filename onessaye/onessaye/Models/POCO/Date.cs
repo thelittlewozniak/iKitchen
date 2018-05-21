@@ -9,6 +9,7 @@ namespace onessaye.Models.POCO
     {
         public int Id { get; set; }
         public int QuantityLeft { get; set; }
+        public int QuantityAvailable { get; set; }
         public DateTime DateAvailable { get; set; }
         public Date(DateTime AvailableDate, int quantity)
         {

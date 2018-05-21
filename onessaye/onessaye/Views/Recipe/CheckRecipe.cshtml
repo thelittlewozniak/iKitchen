@@ -26,9 +26,23 @@
             <th>Selling price</th>
             <td>@Model.ReturnSellingPrice()</td>
         </tr>
-        @*<tr>
+        <tr>
             <th>Availability</th>
             <td>@Model.ReturnAvailableDate()</td>
-        </tr>*@
+        </tr>
     </table>
+    <table border="1">
+        <tr>
+            <th>Availability</th>
+            <th>Quantity available</th>
+            <th>Quantity Left</th>
+        </tr>
+        @foreach (Date date in Model.r.Schedules.ListDate)
+        {
+            <tr>
+                <td>@date.DateAvailable</td>
+                <td>@date.QuantityLeft</td>
+            </tr>
+        }
+        </table>
 </div>
