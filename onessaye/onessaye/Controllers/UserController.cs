@@ -18,7 +18,6 @@ namespace onessaye.Controllers
         {
             UserDAL dal = new UserDAL();
             ViewBag.ListRecipes = dal.GetRecipes(user);
-            ViewBag.test = dal.GetRecipes();
             DisplayUserInformation info = new DisplayUserInformation(user);
             return View("ProfilePage",info);
         }

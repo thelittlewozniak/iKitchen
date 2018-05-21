@@ -11,6 +11,7 @@ namespace onessaye.Models.POCO
         public static string Unit = "teaspoon(s)";
         //Builder
         public TeaspoonIngredient(string name, double amount, double unitPrice) : base(name, amount, unitPrice) { }
+        public TeaspoonIngredient() { }
         //Methods
         public override float CalculCostIngredient()
         {
