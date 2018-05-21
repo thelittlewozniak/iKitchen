@@ -11,16 +11,16 @@ namespace onessaye.Models.DAL
         private DbConnection dbc;
         public RegisterDAL()
         {
-            this.dbc = new DbConnection();
+            dbc = new DbConnection();
         }
-        public void AddUserDb(User myUser)
+        public void AddUserDb(Neighbor myUser)
         {
-            dbc.DbNeighbor.Add(myUser as Neighbor);
+            dbc.DbNeighbor.Add(myUser);
             dbc.SaveChanges();
         }
-        public void AddCookDb(User myUser)
+        public void AddCookDb(Cook myUser)
         {
-            dbc.DbCook.Add(myUser as Cook);
+            dbc.DbCook.Add(myUser);
             dbc.SaveChanges();
         }
     }

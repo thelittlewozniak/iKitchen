@@ -29,6 +29,11 @@ namespace onessaye.Models.DAL
             Cook cook = dbc.DbCook.Include(c=>c.ListRecipes).FirstOrDefault(u => u.Nickname == nickname);
             return cook;
         }
+        public Cook GetCook(int  id)
+        {
+            Cook cook = dbc.DbCook.Include(c => c.ListRecipes).FirstOrDefault(u => u.Id == id);
+            return cook;
+        }
         public Neighbor GetNeighbor(string nickname)
         {
             Neighbor neighbor = dbc.DbNeighbor.FirstOrDefault(u => u.Nickname == nickname);
