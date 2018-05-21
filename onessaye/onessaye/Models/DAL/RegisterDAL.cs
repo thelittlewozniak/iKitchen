@@ -11,7 +11,7 @@ namespace onessaye.Models.DAL
         private DbConnection dbc;
         public RegisterDAL()
         {
-            this.dbc = new DbConnection();
+            dbc = new DbConnection();
         }
         public void AddUserDb(Neighbor myUser)
         {
