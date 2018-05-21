@@ -3,5 +3,8 @@
     ViewBag.Title = "Register";
 }
 
-<h2>Register</h2>
-
+<h2>@foreach (var viewBagItem in ViewContext.ViewData)
+{
+    @viewBagItem.Value
+}
+</h2>

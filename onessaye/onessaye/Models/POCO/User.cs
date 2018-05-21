@@ -20,5 +20,8 @@ namespace onessaye.Models.POCO
         public string Gender { get; set; }
         public int Age { get; set; }
         public DateTime DateRegister { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string DoorNumber { get; set; }
     }
 }

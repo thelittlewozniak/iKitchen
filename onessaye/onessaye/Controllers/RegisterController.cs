@@ -1,8 +1,10 @@
-﻿using System;
+﻿using onessaye.Models.DAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using onessaye.Models.POCO;
 
 namespace onessaye.Controllers
 {
@@ -16,20 +18,49 @@ namespace onessaye.Controllers
         [HttpPost]
         public ActionResult Register()
         {
+            bool check=true;
+            
+            if(Request["Nickname"]== Request["FirstName"]|| Request["LastName"]== Request["FirstName"] || Request["LastName"]== Request["Nickname"])
+            {
+                check = false;
+            }
+            int? tmp=0;
+            try
+            {
+                tmp = Convert.ToInt32(Request["Age"]);
+                if(tmp<18 || tmp>150 || tmp==null)
+                {
+                    check = false;
+                }
+            }
+            catch (Exception ex)
+            {
+                check = false;
+            }
+            if(check==true)
+            {
+                User myUser = new User();
+                myUser.Age = Convert.ToInt32(Request["Age"]);
+                myUser.Nickname = Request["Nickname"];
+                myUser.LastName = Request["LastName"];
+                myUser.Gender = Request["Gender"];
+                myUser.Email = Request["Email"];
+                myUser.FirstName = Request["FirstName"];
+                myUser.DateRegister = DateTime.Now;
+                myUser.Password = Request["password"];
+                //reste a ajouter
+
+
+                RegisterDAL regDal = new RegisterDAL();
+                if(Request["Type"]=="Cook")
+                {
+                   // regDal.AddCookDb(myUser);
+                    ViewBag.test = "ok";
+                }
+            }
+
+
             return View();
         }
-
-
-          /*          public int Id { get; set; }
-        [Required, MinLength(3), MaxLength(15), Display(Name = "Enter your nickname")]
-        public string Nickname { get; set; }
-        [Required, MinLength(4), MaxLength(15), Display(Name = "Enter your password")]
-        public string Password { get; set; }
-        public string LastName { get; set; }
-        public string FirstName { get; set; }
-        public string Email { get; set; }
-        public string Gender { get; set; }
-        public int Age { get; set; }
-        public DateTime DateRegister { get; set; }*/
     }
 }
