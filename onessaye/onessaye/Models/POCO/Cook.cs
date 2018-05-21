@@ -14,5 +14,10 @@ namespace onessaye.Models.POCO
         public List<Recipe> ListRecipes { get; set; }
         //Builder
         public Cook() { ListRecipes = new List<Recipe>(); }
+        //Methods
+        public void AddRecipe(Recipe recipe)
+        {
+            ListRecipes.Add(recipe);
+        }
     }
 }
