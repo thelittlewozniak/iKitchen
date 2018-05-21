@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using onessaye.Models.POCO;
+using System.Security.Cryptography;
 
 namespace onessaye.Controllers
 {

@@ -12,7 +12,7 @@ namespace onessaye.Models.POCO
         public int Id { get; set; }
         [Required, MinLength(3), MaxLength(15), Display (Name = "Enter your nickname")]
         public string Nickname { get; set; }
-        [Required, MinLength(4), MaxLength(15), Display(Name = "Enter your password")]
+        [Required, MinLength(4), MaxLength(1500), Display(Name = "Enter your password")]
         public string Password { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
