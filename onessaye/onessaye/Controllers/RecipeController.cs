@@ -205,6 +205,7 @@ namespace onessaye.Controllers
         {
             ViewBag.Cook = cook_username;
             DisplayRecipeInformation d = new DisplayRecipeInformation(recipe_to_modify);
+            return View();
         }
         public ActionResult DeleteRecipe()
         {
