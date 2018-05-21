@@ -162,6 +162,7 @@
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\Schedule\ScheduleView.cshtml" />
+    <Content Include="Views\Recipe\ModifyRecipe.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -201,6 +201,11 @@ namespace onessaye.Controllers
             DisplayRecipeInformation d = new DisplayRecipeInformation(r);
             return View(d);
         }
+        public ActionResult ModifyRecipe(string cook_username, Recipe recipe_to_modify)
+        {
+            ViewBag.Cook = cook_username;
+            DisplayRecipeInformation d = new DisplayRecipeInformation(recipe_to_modify);
+        }
         public ActionResult DeleteRecipe()
         {
             return View();
