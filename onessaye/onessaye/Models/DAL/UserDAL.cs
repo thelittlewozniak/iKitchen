@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using onessaye.Models.POCO;
 using onessaye.Models.EXCEPTIONS;
 
@@ -25,7 +26,7 @@ namespace onessaye.Models.DAL
         }
         public Cook GetCook(string nickname)
         {
-            Cook cook = dbc.DbCook.FirstOrDefault(u => u.Nickname == nickname);
+            Cook cook = dbc.DbCook.Include(c=>c.ListRecipes).FirstOrDefault(u => u.Nickname == nickname);
             return cook;
         }
         public Neighbor GetNeighbor(string nickname)
@@ -48,7 +49,7 @@ namespace onessaye.Models.DAL
         public List<Recipe> GetRecipes(Cook cook)
         {
             List<Recipe> L_Recipes = new List<Recipe>();
-            Cook Cook = dbc.DbCook.SingleOrDefault(c => c.Nickname == cook.Nickname);
+            Cook Cook = dbc.DbCook.Include(c=>c.ListRecipes).SingleOrDefault(c => c.Nickname == cook.Nickname);
             L_Recipes = Cook.ListRecipes;
             return L_Recipes;
         }
