@@ -12,7 +12,11 @@ namespace onessaye.Models.POCO
         //Attributes
         public string Address { get; set; }
         public List<Recipe> ListRecipes { get; set; }
-        //Builder
+        //Methods
         public Cook() { ListRecipes = new List<Recipe>(); }
+        public void AddRecipe(Recipe recipe)
+        {
+            ListRecipes.Add(recipe);
+        }
     }
 }
