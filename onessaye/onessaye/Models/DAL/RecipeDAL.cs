@@ -4,7 +4,6 @@ using System.Linq;
 using System.Web;
 using System.Data.Entity;
 using onessaye.Models.POCO;
-using System.Data.Entity;
 //Bisconti Flavian
 
 namespace onessaye.Models.DAL
@@ -24,7 +23,7 @@ namespace onessaye.Models.DAL
         }
         public Recipe GetRecipe(int id)
         {
-            return dbc.DbRecipe.Include(c=>c.Schedules).Include(c=>c.Schedules.ListDate).SingleOrDefault(r => r.Id == id);
+            return dbc.DbRecipe.Include(c=>c.ListIngredients).Include(c=>c.Schedules.ListDate).SingleOrDefault(r => r.Id == id);
         }
     }
 }

@@ -13,6 +13,7 @@ namespace onessaye.Models.POCO
         public static string Unit = "ml";
         //Builder
         public LiquidIngredient(string name, double amount, double unitPrice) : base(name, amount, unitPrice) { }
+        public LiquidIngredient() { }
         //Methods
         public override float CalculCostIngredient()
         {
