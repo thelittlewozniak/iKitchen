@@ -7,7 +7,7 @@ using onessaye.Models.DAL;
 using onessaye.Models.POCO;
 using onessaye.Models.EXCEPTIONS;
 
-//Bisconti Flavian
+//Bisconti Flavian && Zaretti Quentin
 
 namespace onessaye.Controllers
 {
@@ -23,14 +23,19 @@ namespace onessaye.Controllers
         {
             List<string> errors = new List<string>();
             UserDAL dal = new UserDAL();
+            RsaDAL rsa = new RsaDAL();
             try
             {
                 Cook cook = dal.GetCook(Nickname);
+                string tmp;
+                tmp = cook.Password;
+                tmp=rsa.Decryption(tmp);
                 if(cook is null)
                 {
                     Neighbor neighbor = dal.GetNeighbor(Nickname);
                     //User is a Neighbor
-                    if(neighbor.Password == Password)
+                    tmp = neighbor.Password;
+                    if (rsa.Decryption(tmp) == Password)
                     {
                         return RedirectToAction("ProfilePageNeighbor", "User", neighbor);
                     }
@@ -42,7 +47,7 @@ namespace onessaye.Controllers
                     }
                 }
                 //User is a Cook
-                else if (cook.Password == Password)
+                else if (tmp == Password)
                 {
                     return RedirectToAction("ProfilePageCook", "User", cook);
                 }
