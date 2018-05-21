@@ -48,6 +48,10 @@ namespace onessaye.Controllers
                 myUser.FirstName = Request["FirstName"];
                 myUser.DateRegister = DateTime.Now;
                 myUser.Password = Request["password"];
+                myUser.Address = "test";
+                myUser.City = "test";
+                myUser.DoorNumber = "42";
+                myUser.Street = "test";
                 //reste a ajouter
 
 
