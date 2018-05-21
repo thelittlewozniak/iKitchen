@@ -15,11 +15,9 @@ namespace onessaye.Models.POCO
         {
             DateAvailable = AvailableDate;
             QuantityLeft = quantity;
+            QuantityAvailable = quantity;
         }
-        public Date()
-        {
-
-        }
+        public Date(){}
         public override string ToString()
         {
             return string.Concat("quantity available: " + QuantityLeft + " Date: " + DateAvailable+ "\br");

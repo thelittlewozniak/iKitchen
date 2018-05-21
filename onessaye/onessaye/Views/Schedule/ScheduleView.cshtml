@@ -1,0 +1,25 @@
+﻿@using onessaye.Models.POCO;
+@{
+    ViewBag.Title = "ScheduleView";
+}
+
+<h2>ScheduleView</h2>
+@foreach (Recipe recipe in ViewBag.recipes)
+{
+    @recipe.Name
+    <table>
+        <tr>
+            <th>Date:</th>
+            <th>Quantity available:</th>
+            <th>Quantity needed:</th>
+        </tr>
+        @foreach(Date date in recipe.Schedules.ListDate)
+        {
+            <tr>
+                <td>@date.DateAvailable</td>
+                <td>@date.QuantityAvailable</td>
+                <td>@date.QuantityLeft</td>
+            </tr>
+        }
+    </table>
+}

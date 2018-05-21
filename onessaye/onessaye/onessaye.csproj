@@ -112,6 +112,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
+    <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\RecipeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -120,6 +121,7 @@
     <Compile Include="Models\DAL\DbConnection.cs" />
     <Compile Include="Models\DAL\IngredientDAL.cs" />
     <Compile Include="Models\DAL\RecipeDAL.cs" />
+    <Compile Include="Models\DAL\ScheduleDAL.cs" />
     <Compile Include="Models\DAL\UserDAL.cs" />
     <Compile Include="Models\EXCEPTIONS\UnableToLogInException.cs" />
     <Compile Include="Models\POCO\Catalog.cs" />
@@ -159,6 +161,7 @@
     <Content Include="Views\Recipe\DeleteRecipe.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
     <Content Include="Views\Register\Register.cshtml" />
+    <Content Include="Views\Schedule\ScheduleView.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

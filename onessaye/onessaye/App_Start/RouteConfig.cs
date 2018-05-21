@@ -28,7 +28,11 @@ namespace onessaye
                 name: "DeletedRecipe",
                 url: "Recipe/DeleteRecipe");
             //Zaretti Quentin
-
+            //Nathan Pire
+            routes.MapRoute(
+                name: "Schedule",
+                url: "{Cook}",
+                defaults: new { controller = "ScheduleController", action = "Index", Cook = UrlParameter.Optional });
         }
     }
 }
