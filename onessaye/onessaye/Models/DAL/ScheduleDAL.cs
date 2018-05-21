@@ -23,9 +23,9 @@ namespace onessaye.Models.DAL
         {
             return dbc.DbRecipe.Include(r => r.Schedules).Include(r => r.Schedules.ListDate).SingleOrDefault(r => r.Id == id);
         }
-        public List<Recipe> GetSchedulesPerUser(Cook user)
+        public List<Recipe> GetSchedulesPerUser(int id)
         {
-            Cook cook= dbc.DbCook.Include(r=>r.ListRecipes).SingleOrDefault(r=>r.Id==user.Id);
+            Cook cook= dbc.DbCook.Include(r=>r.ListRecipes).SingleOrDefault(r=>r.Id==id);
             List<Recipe> recipes = new List<Recipe>();
             foreach (Recipe recipe in cook.ListRecipes)
             {

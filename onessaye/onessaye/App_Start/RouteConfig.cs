@@ -31,8 +31,8 @@ namespace onessaye
             //Nathan Pire
             routes.MapRoute(
                 name: "Schedule",
-                url: "{Cook}",
-                defaults: new { controller = "ScheduleController", action = "Index", Cook = UrlParameter.Optional });
+                url: "Schedule/Index/{id_Cook}",
+                defaults: new { controller = "ScheduleController", action = "Index", id_Cook = UrlParameter.Optional });
         }
     }
 }

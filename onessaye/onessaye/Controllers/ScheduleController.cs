@@ -11,10 +11,11 @@ namespace onessaye.Controllers
     public class ScheduleController : Controller
     {
         // GET: Schedule
-        public ActionResult Index(Cook cook)
+        public ActionResult Index(string id)
         {
+            int idCook = Convert.ToInt32(id);
             ScheduleDAL schedules = new ScheduleDAL();
-            ViewBag.Recipe = schedules.GetSchedulesPerUser(cook);
+            ViewBag.Recipe = schedules.GetSchedulesPerUser(idCook);
             return View("ScheduleView");
         }
     }
