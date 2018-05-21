@@ -25,7 +25,7 @@
 {
 <div>
     <p>@Html.RouteLink("Create a new recipe", "AddRecipe", new { Cook = Model.User.Nickname, NbIngredients = 3 })</p>
-    <p>@Html.RouteLink("Schedule", "Schedule", new { Cook = Model.User})</p>
+    <p>@Html.RouteLink("Schedule", "Schedule", new { id_Cook = Convert.ToString(Model.User.Id) })</p>
     <h4>Your recipes</h4>
         <table>
             @foreach (Recipe recipe in l_recipes)
