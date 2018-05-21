@@ -10,6 +10,7 @@ namespace onessaye.Models.DAL
     public class DbConnection : DbContext
     {
         public DbSet<Recipe> DbRecipe { get; set; }
+        public DbSet<Schedule> DbSchedules { get; set; }
         public DbSet<Ingredient> DbIngredient { get; set; }
         public DbSet<Cook> DbCook { get; set; }
         public DbSet<Neighbor> DbNeighbor { get; set; }

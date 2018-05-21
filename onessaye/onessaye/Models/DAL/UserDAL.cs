@@ -5,7 +5,7 @@ using System.Web;
 using System.Data.Entity;
 using onessaye.Models.POCO;
 using onessaye.Models.EXCEPTIONS;
-
+using System.Data.Entity;
 //Bisconti Flavian
 
 namespace onessaye.Models.DAL
@@ -49,7 +49,11 @@ namespace onessaye.Models.DAL
         public List<Recipe> GetRecipes(Cook cook)
         {
             List<Recipe> L_Recipes = new List<Recipe>();
+<<<<<<< HEAD
             Cook Cook = dbc.DbCook.Include(c=>c.ListRecipes).SingleOrDefault(c => c.Nickname == cook.Nickname);
+=======
+            Cook Cook = dbc.DbCook.Include(c => c.ListRecipes).SingleOrDefault(c => c.Nickname == cook.Nickname);
+>>>>>>> ab72d0cc25d171b14f6f9ea69458ccc9f09009ff
             L_Recipes = Cook.ListRecipes;
             return L_Recipes;
         }

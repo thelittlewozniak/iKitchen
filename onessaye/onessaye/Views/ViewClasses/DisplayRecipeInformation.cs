@@ -27,9 +27,9 @@ namespace onessaye.Views.ViewClasses
         {
             return String.Format("{0:d}", r.Date);
         }
-        //public string ReturnAvailableDate()
-        //{
-        //    return r.Schedules.ToString();
-        //}
+        public string ReturnAvailableDate()
+        {
+            return r.Schedules.ToString();
+        }
     }
 }
