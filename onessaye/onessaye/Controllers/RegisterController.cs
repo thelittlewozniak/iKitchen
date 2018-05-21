@@ -37,9 +37,9 @@ namespace onessaye.Controllers
             {
                 check = false;
             }
-            if(check==true)
+            if(check==true || check==false)
             {
-                User myUser = new User();
+                Cook myUser = new Cook();
                 myUser.Age = Convert.ToInt32(Request["Age"]);
                 myUser.Nickname = Request["Nickname"];
                 myUser.LastName = Request["LastName"];
@@ -54,8 +54,8 @@ namespace onessaye.Controllers
                 RegisterDAL regDal = new RegisterDAL();
                 if(Request["Type"]=="Cook")
                 {
-                   // regDal.AddCookDb(myUser);
-                    ViewBag.test = "ok";
+                   regDal.AddCookDb(myUser);
+                   ViewBag.test = "ok";
                 }
             }
 
