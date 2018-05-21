@@ -12,6 +12,7 @@ namespace onessaye.Controllers
     public class RegisterController : Controller
     {
         // GET: Register
+        UserDAL dal = new UserDAL();
         public ActionResult Index()
         {
             return View();
@@ -20,8 +21,38 @@ namespace onessaye.Controllers
         public ActionResult Register()
         {
             bool check=true;
+
+            Cook checkCook;
+            Neighbor checkNeighbour;
+            try
+            {
+                checkCook = dal.GetCook(Request["Nickname"]);
+                if (checkCook.Nickname == Request["Nickname"])
+                {
+                    check = false;
+                    ViewBag.test = "Name already taken";
+                }
+            }
+            catch(Exception)
+            {
+
+            }
+            try
+            {
+                checkNeighbour = dal.GetNeighbor(Request["Nickname"]);
+                if(checkNeighbour.Nickname== Request["Nickname"])
+                {
+                    ViewBag.test = "Name already taken";
+                    check = false;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+                
             
-            if(Request["Nickname"]== Request["FirstName"]|| Request["LastName"]== Request["FirstName"] || Request["LastName"]== Request["Nickname"])
+                if (Request["Nickname"]== Request["FirstName"]|| Request["LastName"]== Request["FirstName"] || Request["LastName"]== Request["Nickname"])
             {
                 check = false;
                 ViewBag.test = "Your name can't be your pseudo.";
@@ -75,7 +106,7 @@ namespace onessaye.Controllers
                     myUser.DoorNumber = Request["DoorNumber"];
                     myUser.Street = Request["Street"];
                     regDal.AddCookDb(myUser);
-                    ViewBag.test = "myUser.Nickname Bienvenue !";
+                    ViewBag.test = myUser.Nickname+ " Bienvenue !";
                 }
                 else
                 {
@@ -92,7 +123,7 @@ namespace onessaye.Controllers
                     myUser.DoorNumber = Request["DoorNumber"];
                     myUser.Street = Request["Street"];
                     regDal.AddUserDb(myUser);
-                    ViewBag.test = "myUser.Nickname Bienvenue !";
+                    ViewBag.test = myUser.Nickname +" Bienvenue !";
 
                 }
             }
