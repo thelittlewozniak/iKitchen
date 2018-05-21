@@ -65,11 +65,11 @@ new SelectListItem { Text = "Dessert", Value = "Dessert" }};
             @Html.ActionLink("-Delete Ingredient Slot", "DisplayRecipeForm", new { Cook = cook, NbIngredients = Convert.ToString(nbi - 1) })
         </p>
         <br />
-        <h4>List of Disponible date</h4>
+        <h4>List of Available Dates</h4>
             <table border="1">
                 <tr>
-                    <th>Disponible Date</th>
-                    <th>Quantity for this date</th>
+                    <th>Availability</th>
+                    <th>Quantity</th>
                 </tr>
                 @for (int h = 0; h < nbd; h++)
                 {
@@ -80,7 +80,7 @@ new SelectListItem { Text = "Dessert", Value = "Dessert" }};
                 }
             </table>
                 <p>
-                    @Html.ActionLink("+Add available date", "DisplayRecipeForm", new { Cook = cook, nbrDate = nbd + 1 })
+                    @Html.ActionLink("+Add available date", "DisplayRecipeForm", new { Cook = cook, nbrDate = nbd + 1, NbIngredients = Convert.ToString(nbi) })
                 </p>
                 <br />
 
