@@ -54,7 +54,8 @@ namespace onessaye.Controllers
             return View("RecipeForm");
         }
         [HttpPost]
-        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string> unit,List<string>price, string type, string cook_nickname, List<string> date,List<string>quantity)
+        public ActionResult CheckRecipe(string name, List<string> ingredient, List<string> amount, List<string> unit,List<string>price, 
+            string type, string cook_nickname, List<string> date,List<string>quantity)
         {
             //Checking
             List<string> error = new List<string>();
@@ -201,11 +202,150 @@ namespace onessaye.Controllers
             DisplayRecipeInformation d = new DisplayRecipeInformation(r);
             return View(d);
         }
-        public ActionResult ModifyRecipe(string cook_username, Recipe recipe_to_modify)
+        public ActionResult ModifyRecipe(string cook_username, int id_recipe)
         {
+            RecipeDAL dal = new RecipeDAL();
+            Recipe recipe_to_modify = dal.GetRecipe(id_recipe);
             ViewBag.Cook = cook_username;
-            DisplayRecipeInformation d = new DisplayRecipeInformation(recipe_to_modify);
+            List<string> ListIngredients = new List<string>();
+            List<string> ListPrices = new List<string>();
+            List<string> ListAmounts = new List<string>();
+            foreach(Ingredient ing in recipe_to_modify.ListIngredients)
+            {
+                ListIngredients.Add(ing.Name);
+                ListPrices.Add(Convert.ToString(ing.UnitPrice));
+                ListAmounts.Add(Convert.ToString(ing.Amount));
+            }
+            ViewBag.ListIngredients = ListIngredients;
+            ViewBag.ListPrices = ListPrices;
+            ViewBag.ListAmounts = ListAmounts;
+            ViewBag.NbIngredients = ListIngredients.Count;
+            ViewBag.Name = recipe_to_modify.Name;
+            ViewBag.IdRecipe = recipe_to_modify.Id;
             return View();
+        }
+        public ActionResult CheckModifications(string name, List<string> ingredient, List<string> amount, List<string> unit, List<string> price, 
+            string type, string cook_nickname, List<string> date, List<string> quantity, int id)
+        {
+            //Checking
+            List<string> error = new List<string>();
+            bool ok = true;
+            //Checking name of recipe
+            if (name.Length < 3)
+            {
+                ok = false;
+                error.Add("The name of the recipe must contain at least 3 characters");
+            }
+            //Checking prices
+            bool incorrectPrice = false;
+            foreach (string p in price)
+            {
+                bool isDouble = double.TryParse(p, out double inter);
+                if (!isDouble || inter < 0.10 || inter > 10 || p is null) incorrectPrice = true;
+            }
+            if (incorrectPrice)
+            {
+                ok = false;
+                error.Add("The price of the ingredients must be defined between 0.10 and 10 euros");
+            }
+            //Checking name of ingredients
+            bool notEnoughChar = false, wrongChar = false;
+            foreach (string i in ingredient)
+            {
+                if (i.Length < 3) notEnoughChar = true;
+                for (int j = 0; j < i.Length; j++)
+                {
+                    if (i[j] >= '0' && i[j] <= '9') wrongChar = true;
+                }
+            }
+            if (notEnoughChar)
+            {
+                ok = false;
+                error.Add("The name of the ingredients must contain at least 3 characters");
+            }
+            if (wrongChar)
+            {
+                ok = false;
+                error.Add("The name of the ingredients can't contain digits");
+            }
+            //Checking amount of ingredients
+            bool incorrectAmountInt = false, incorrectAmountDouble = false;
+            for (int i = 0; i < amount.Count; i++)
+            {
+                if (unit[i] == "unit" || unit[i] == "teaspoon")
+                {
+                    bool isInt = int.TryParse(amount[i], out int inter);
+                    if (!isInt || inter < 1 || inter > 10 || amount[i] is null) incorrectAmountInt = true;
+                }
+                else
+                {
+                    bool isDouble = double.TryParse(amount[i], out double inter);
+                    if (!isDouble || inter < 10 || inter > 1000 || amount[i] is null) incorrectAmountDouble = true;
+                }
+            }
+            if (incorrectAmountInt)
+            {
+                ok = false;
+                error.Add("The amount of the ingredients quantified in teaspoon or unit must be defined between 1 and 10");
+            }
+            if (incorrectAmountDouble)
+            {
+                ok = false;
+                error.Add("The amount of the ingredients quantified in ml or g must be defined between 10 and 1000");
+            }
+            ViewBag.Cook = cook_nickname;
+            //View redirection
+            if (ok)
+            {
+                UserDAL dalU = new UserDAL();
+                Recipe recipe = new Recipe(name, type);
+                for (int i = 0; i < ingredient.Count; i++)
+                {
+                    switch (unit[i])
+                    {
+                        case "g":
+                            {
+                                SolidIngredient ing = new SolidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                break;
+                            }
+                        case "ml":
+                            {
+                                LiquidIngredient ing = new LiquidIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                break;
+                            }
+                        case "teaspoon":
+                            {
+                                TeaspoonIngredient ing = new TeaspoonIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                break;
+                            }
+                        case "unit":
+                            {
+                                UnitIngredient ing = new UnitIngredient(ingredient[i], Convert.ToDouble(amount[i]), Convert.ToDouble(price[i]));
+                                recipe.AddIngredient(ing);
+                                break;
+                            }
+                    }
+                }
+                recipe.CostPrice = recipe.CalculCostPrice();
+                recipe.SellingPrice = recipe.CalculSellingPrice();
+                dalU.UpdateRecipe(id, name, recipe.ListIngredients, recipe.CostPrice, recipe.SellingPrice);
+                DisplayRecipeInformation d = new DisplayRecipeInformation(recipe);
+                return View("ConfirmedRecipe", d);
+            }
+            else
+            {
+                ViewBag.Name = name;
+                ViewBag.IdRecipe = id;
+                ViewBag.ListIngredients = ingredient;
+                ViewBag.ListAmounts = amount;
+                ViewBag.ListPrices = price;
+                ViewBag.NbIngredients = Convert.ToInt32(ingredient.Count);
+                ViewBag.ListErrors = error;
+                return View("ModifyRecipe");
+            }
         }
         public ActionResult DeleteRecipe()
         {
