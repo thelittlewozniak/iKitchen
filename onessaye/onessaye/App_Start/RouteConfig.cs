@@ -27,8 +27,7 @@ namespace onessaye
             routes.MapRoute(
                 name: "DeletedRecipe",
                 url: "Recipe/DeleteRecipe");
-            //Zaretti Quentin
-            //Nathan Pire
+            //Nathan Pire Zaretti Quentin
             routes.MapRoute(
                 name: "Schedule",
                 url: "Schedule/Index/{id_Cook}",
