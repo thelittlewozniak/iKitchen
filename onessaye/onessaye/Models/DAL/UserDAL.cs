@@ -69,5 +69,18 @@ namespace onessaye.Models.DAL
             dbc.DbRecipe.Remove(dbc.DbRecipe.SingleOrDefault(r => r.Id == id));
             dbc.SaveChanges();
         }
+        public void AddOrder(int id, Order order)
+        {
+            dbc.DbNeighbor.SingleOrDefault(c => c.Id == id).AddOrder(order);
+            List<Date> listdate = dbc.DbDate.ToList();
+            foreach (Date date in order.Recipe.Schedules.ListDate)
+            {
+                if(date.DateAvailable==order.ReceiptDate)
+                {
+                    dbc.DbDate.SingleOrDefault(c => c.Id == date.Id).RemoveQuantityLeft(1);
+                }
+            }
+            dbc.SaveChanges();
+        }
     }
 }

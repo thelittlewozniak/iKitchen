@@ -14,6 +14,8 @@ namespace onessaye.Models.DAL
         public DbSet<Ingredient> DbIngredient { get; set; }
         public DbSet<Cook> DbCook { get; set; }
         public DbSet<Neighbor> DbNeighbor { get; set; }
+        public DbSet<Order> DbOrder { get; set; }
+        public DbSet<Date> DbDate { get; set; }
         public DbConnection()
         {
             Database.SetInitializer(new DBContextInitializer());

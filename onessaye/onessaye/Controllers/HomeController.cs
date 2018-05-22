@@ -69,5 +69,55 @@ namespace onessaye.Controllers
                 return View("Index");
             }
         }
+        public ActionResult LoginForOrder(string Nickname, string Password,string recipe_id)
+        {
+            List<string> errors = new List<string>();
+            UserDAL dal = new UserDAL();
+            try
+            {
+                Cook cook = dal.GetCook(Nickname);
+                if (cook is null)
+                {
+                    Neighbor neighbor = dal.GetNeighbor(Nickname);
+                    //User is a Neighbor
+                    if (neighbor.Password == Password)
+                    {
+                        RecipeDAL dbrecipe = new RecipeDAL();
+                        Recipe recipe = dbrecipe.GetRecipe(Convert.ToInt32(recipe_id));
+                        ViewBag.Recipe = recipe;
+                        return View("MakeAnOrder");
+                    }
+                    else
+                    {
+                        errors.Add("The password entered is incorrect");
+                        ViewBag.Error = errors;
+                        return View("LoginOrder");
+                    }
+                }
+                //User is a Cook
+                else
+                {
+                    errors.Add("A cook cannot make an order");
+                    ViewBag.Error = errors;
+                    return View("LoginOrder");
+                }
+            }
+            catch (UnableToLogInException ex)
+            {
+                errors.Add(ex.Message);
+                errors.Add(ex.CauseOfError);
+                errors.Add(ex.ErrorTimeStamp.ToString());
+                ViewBag.Error = errors;
+                return View("LoginOrder");
+            }
+            catch (Exception ex)
+            {
+                errors.Add("An internal error has occurred");
+                errors.Add("Please try again later");
+                errors.Add(ex.Message);
+                return View("LoginOrder");
+            }
+        }
+
     }
 }
