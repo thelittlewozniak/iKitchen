@@ -86,7 +86,9 @@ namespace onessaye.Models.DAL
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).Name = name;
             for(int i=0;i<dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients.Count;i++)
             {
-                dbc.DbIngredient.Remove(dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients[i]);
+                int idIng = dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients[i].Id;
+                dbc.DbIngredient.Remove(dbc.DbIngredient.SingleOrDefault(ing => ing.Id == idIng));
+                dbc.SaveChanges();
             }
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).ListIngredients = l_ing;
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).CostPrice = cost_price;
