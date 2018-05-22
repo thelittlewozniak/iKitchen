@@ -33,6 +33,10 @@ namespace onessaye
                 name: "Schedule",
                 url: "Schedule/Index/{id_Cook}",
                 defaults: new { controller = "ScheduleController", action = "Index", id_Cook = UrlParameter.Optional });
+            routes.MapRoute(
+                name: "MakeOrder",
+                url: "Order/AddOrder/{id}",
+                defaults: new { controller = "OrderController", action = "AddOrder", id_Cook = UrlParameter.Optional });
         }
     }
 }

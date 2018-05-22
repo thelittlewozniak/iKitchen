@@ -18,6 +18,7 @@ namespace onessaye.Models.POCO
             QuantityAvailable = quantity;
         }
         public Date(){}
+        public void RemoveQuantityLeft(int nbr) => QuantityLeft -= nbr;
         public override string ToString()
         {
             return string.Concat("quantity available: " + QuantityLeft + " Date: " + DateAvailable+ "\br");

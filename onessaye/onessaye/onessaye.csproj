@@ -111,6 +111,7 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\RegisterController.cs" />
     <Compile Include="Controllers\ScheduleController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -120,6 +121,7 @@
     </Compile>
     <Compile Include="Models\DAL\DbConnection.cs" />
     <Compile Include="Models\DAL\IngredientDAL.cs" />
+    <Compile Include="Models\DAL\OrderDAL.cs" />
     <Compile Include="Models\DAL\RecipeDAL.cs" />
     <Compile Include="Models\DAL\RegisterDAL.cs" />
     <Compile Include="Models\DAL\RsaDAL.cs" />
@@ -165,6 +167,8 @@
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\Schedule\ScheduleView.cshtml" />
     <Content Include="Views\Recipe\ModifyRecipe.cshtml" />
+    <Content Include="Views\Order\MakeAnOrder.cshtml" />
+    <Content Include="Views\Order\LoginOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
