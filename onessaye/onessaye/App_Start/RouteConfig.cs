@@ -37,6 +37,10 @@ namespace onessaye
                 name: "MakeOrder",
                 url: "Order/AddOrder/{id}",
                 defaults: new { controller = "OrderController", action = "AddOrder", id_Cook = UrlParameter.Optional });
+            routes.MapRoute(
+                name: "Order",
+                url: "Order/Order/{id}",
+                defaults: new { controller = "OrderController", action = "Order", recipe_id = UrlParameter.Optional });
         }
     }
 }

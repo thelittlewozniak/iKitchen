@@ -16,6 +16,11 @@ namespace onessaye.Controllers
         {
             return View();
         }
+        public ActionResult Order(string recipe_id)
+        {
+            ViewBag.RecipeiD = recipe_id;
+            return View("LoginOrder");
+        }
         public ActionResult AddOrder(Neighbor user,Order order)
         {
             UserDAL dbuser = new UserDAL();

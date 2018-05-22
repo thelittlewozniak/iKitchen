@@ -26,6 +26,7 @@
             @Html.LabelFor(model => model.Password)
             @Html.TextBoxFor(model => model.Password, new { Required = "Required", Type = "password" })
             <br />
+            <input type="text" name="@ViewBag.Recipe" value="@ViewBag.Recipe" hidden />
             <input type="submit" value="Log in" />
         </fieldset>
     }

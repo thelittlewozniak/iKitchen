@@ -10,13 +10,14 @@
         </tr>
         @foreach (Recipe recipe in ViewBag.Catalogue)
         {
-            <tr>
-                <td>@recipe.Name</td>
-                <td>@recipe.Type</td>
-                <td>@recipe.SellingPrice</td>
-                <td>@recipe.Date.ToString()</td>
-                <td>@Html.ActionLink("Description","CheckRecipe",new { id_recipe=recipe.Id })</td>
-            </tr>
+        <tr>
+            <td>@recipe.Name</td>
+            <td>@recipe.Type</td>
+            <td>@recipe.SellingPrice</td>
+            <td>@recipe.Date.ToString()</td>
+            <td>@Html.ActionLink("Description", "CheckRecipe", new { id_recipe = recipe.Id })</td>
+            <td>@Html.RouteLink("Make an order", "Order", new { id_recipe = Convert.ToString(recipe.Id) })</td>
+        </tr>
         }
     </table>
 </div>
