@@ -35,6 +35,7 @@ namespace onessaye.Controllers
                     Neighbor neighbor = dal.GetNeighbor(Nickname);
                     //User is a Neighbor
                     tmp = neighbor.Password;
+                    tmp = tmp = rsa.Decryption(tmp);
                     if (rsa.Decryption(tmp) == Password)
                     {
                         return RedirectToAction("ProfilePageNeighbor", "User", neighbor);
