@@ -33,7 +33,7 @@
             <tr>
                 <td>@recipe</td>
                 <td>@Html.ActionLink("Description", "CheckRecipe", "Recipe", new { id_recipe = recipe.Id }, new { })</td>
-                <td>@Html.ActionLink("Modify", "ModifyRecipe", "Recipe", new { cook_username = Model.User.Nickname, recipe_to_modify = recipe}, new { })</td>
+                <td>@Html.ActionLink("Modify", "ModifyRecipe", "Recipe", new { cook_username = Model.User.Nickname, id_recipe = recipe.Id}, new { })</td>
                 <td>@Html.ActionLink("Delete", "DeleteRecipe", new { id_recipe = recipe.Id })</td>
             </tr>
             }

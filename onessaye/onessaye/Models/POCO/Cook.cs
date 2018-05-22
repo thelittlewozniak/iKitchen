@@ -9,8 +9,8 @@ namespace onessaye.Models.POCO
 {
     public class Cook:User
     {
-        //Attributes
         public string Address { get; set; }
+        //Attributes
         public List<Recipe> ListRecipes { get; set; }
         //Builder
         public Cook() { ListRecipes = new List<Recipe>(); }

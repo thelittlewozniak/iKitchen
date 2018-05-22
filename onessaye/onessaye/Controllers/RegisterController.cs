@@ -5,12 +5,14 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using onessaye.Models.POCO;
+using System.Security.Cryptography;
 
 namespace onessaye.Controllers
 {
     public class RegisterController : Controller
     {
         // GET: Register
+        UserDAL dal = new UserDAL();
         public ActionResult Index()
         {
             return View();
@@ -19,10 +21,41 @@ namespace onessaye.Controllers
         public ActionResult Register()
         {
             bool check=true;
+
+            Cook checkCook;
+            Neighbor checkNeighbour;
+            try
+            {
+                checkCook = dal.GetCook(Request["Nickname"]);
+                if (checkCook.Nickname == Request["Nickname"])
+                {
+                    check = false;
+                    ViewBag.test = "Name already taken";
+                }
+            }
+            catch(Exception)
+            {
+
+            }
+            try
+            {
+                checkNeighbour = dal.GetNeighbor(Request["Nickname"]);
+                if(checkNeighbour.Nickname== Request["Nickname"])
+                {
+                    ViewBag.test = "Name already taken";
+                    check = false;
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+                
             
-            if(Request["Nickname"]== Request["FirstName"]|| Request["LastName"]== Request["FirstName"] || Request["LastName"]== Request["Nickname"])
+                if (Request["Nickname"]== Request["FirstName"]|| Request["LastName"]== Request["FirstName"] || Request["LastName"]== Request["Nickname"])
             {
                 check = false;
+                ViewBag.test = "Your name can't be your pseudo.";
             }
             int? tmp=0;
             try
@@ -31,35 +64,67 @@ namespace onessaye.Controllers
                 if(tmp<18 || tmp>150 || tmp==null)
                 {
                     check = false;
+                    ViewBag.test = "You can't be less than 0 years and more than 150.";
                 }
             }
             catch (Exception ex)
             {
                 check = false;
+                ViewBag.test = "Your age must be in number.";
             }
-            if(check==true || check==false)
+            try
             {
-                Cook myUser = new Cook();
-                myUser.Age = Convert.ToInt32(Request["Age"]);
-                myUser.Nickname = Request["Nickname"];
-                myUser.LastName = Request["LastName"];
-                myUser.Gender = Request["Gender"];
-                myUser.Email = Request["Email"];
-                myUser.FirstName = Request["FirstName"];
-                myUser.DateRegister = DateTime.Now;
-                myUser.Password = Request["password"];
-                myUser.Address = "test";
-                myUser.City = "test";
-                myUser.DoorNumber = "42";
-                myUser.Street = "test";
-                //reste a ajouter
-
+                tmp = Convert.ToInt32(Request["DoorNumber"]);
+                if (tmp == null)
+                {
+                    check = false;
+                    ViewBag.test = "You must have a door number.";
+                }
+            }
+            catch (Exception ex)
+            {
+                check = false;
+                ViewBag.test = "Your door number must contain only numbers.";
+            }
+            if (check==true)
+            {
+                
 
                 RegisterDAL regDal = new RegisterDAL();
                 if(Request["Type"]=="Cook")
                 {
-                   regDal.AddCookDb(myUser);
-                   ViewBag.test = "ok";
+                    Cook myUser = new Cook();
+                    myUser.Age = Convert.ToInt32(Request["Age"]);
+                    myUser.Nickname = Request["Nickname"];
+                    myUser.LastName = Request["LastName"];
+                    myUser.Gender = Request["Gender"];
+                    myUser.Email = Request["Email"];
+                    myUser.FirstName = Request["FirstName"];
+                    myUser.DateRegister = DateTime.Now;
+                    myUser.Password = Request["password"]; // a crypter
+                    myUser.City = Request["City"];
+                    myUser.DoorNumber = Request["DoorNumber"];
+                    myUser.Street = Request["Street"];
+                    regDal.AddCookDb(myUser);
+                    ViewBag.test = myUser.Nickname+ " Bienvenue !";
+                }
+                else
+                {
+                    Neighbor myUser = new Neighbor();
+                    myUser.Age = Convert.ToInt32(Request["Age"]);
+                    myUser.Nickname = Request["Nickname"];
+                    myUser.LastName = Request["LastName"];
+                    myUser.Gender = Request["Gender"];
+                    myUser.Email = Request["Email"];
+                    myUser.FirstName = Request["FirstName"];
+                    myUser.DateRegister = DateTime.Now;
+                    myUser.Password = Request["password"]; // a crypter
+                    myUser.City = Request["City"];
+                    myUser.DoorNumber = Request["DoorNumber"];
+                    myUser.Street = Request["Street"];
+                    regDal.AddUserDb(myUser);
+                    ViewBag.test = myUser.Nickname +" Bienvenue !";
+
                 }
             }
 

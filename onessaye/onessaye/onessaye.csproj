@@ -124,6 +124,7 @@
     <Compile Include="Models\DAL\OrderDAL.cs" />
     <Compile Include="Models\DAL\RecipeDAL.cs" />
     <Compile Include="Models\DAL\RegisterDAL.cs" />
+    <Compile Include="Models\DAL\RsaDAL.cs" />
     <Compile Include="Models\DAL\ScheduleDAL.cs" />
     <Compile Include="Models\DAL\UserDAL.cs" />
     <Compile Include="Models\EXCEPTIONS\UnableToLogInException.cs" />
