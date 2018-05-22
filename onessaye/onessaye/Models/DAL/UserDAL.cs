@@ -69,19 +69,18 @@ namespace onessaye.Models.DAL
             dbc.DbRecipe.Remove(dbc.DbRecipe.SingleOrDefault(r => r.Id == id));
             dbc.SaveChanges();
         }
-<<<<<<< HEAD
         public void AddOrder(int id, Order order)
         {
             dbc.DbNeighbor.SingleOrDefault(c => c.Id == id).AddOrder(order);
             List<Date> listdate = dbc.DbDate.ToList();
             foreach (Date date in order.Recipe.Schedules.ListDate)
             {
-                if(date.DateAvailable==order.ReceiptDate)
+                if (date.DateAvailable == order.ReceiptDate)
                 {
                     dbc.DbDate.SingleOrDefault(c => c.Id == date.Id).RemoveQuantityLeft(1);
                 }
             }
-=======
+        }
         public void UpdateRecipe(int id, string name, List<Ingredient> l_ing, float cost_price, float selling_price)
         {
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).Name = name;
@@ -93,7 +92,6 @@ namespace onessaye.Models.DAL
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).CostPrice = cost_price;
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).SellingPrice = selling_price;
             dbc.DbRecipe.SingleOrDefault(r => r.Id == id).Date = DateTime.Now;
->>>>>>> 83786571f3d625360a7898183c0463e863cbfe14
             dbc.SaveChanges();
         }
     }
