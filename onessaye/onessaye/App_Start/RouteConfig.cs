@@ -34,12 +34,12 @@ namespace onessaye
                 defaults: new { controller = "ScheduleController", action = "Index", id_Cook = UrlParameter.Optional });
             routes.MapRoute(
                 name: "MakeOrder",
-                url: "Order/AddOrder/{id}",
+                url: "Order/AddOrder/{id_Cook}",
                 defaults: new { controller = "OrderController", action = "AddOrder", id_Cook = UrlParameter.Optional });
             routes.MapRoute(
                 name: "Order",
-                url: "Order/Order/{id}",
-                defaults: new { controller = "OrderController", action = "Order", recipe_id = UrlParameter.Optional });
+                url: "Order/Order/{id_recipe}",
+                defaults: new { controller = "OrderController", action = "Order", id_recipe = UrlParameter.Optional });
         }
     }
 }

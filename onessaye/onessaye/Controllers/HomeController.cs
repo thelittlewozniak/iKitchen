@@ -83,18 +83,21 @@ namespace onessaye.Controllers
         {
             List<string> errors = new List<string>();
             UserDAL dal = new UserDAL();
+            RsaDAL rsa = new RsaDAL();
             try
             {
                 Cook cook = dal.GetCook(Nickname);
                 if (cook is null)
                 {
                     Neighbor neighbor = dal.GetNeighbor(Nickname);
+                    var temp = rsa.Decryption(neighbor.Password);
                     //User is a Neighbor
-                    if (neighbor.Password == Password)
+                    if (temp == Password)
                     {
                         RecipeDAL dbrecipe = new RecipeDAL();
                         Recipe recipe = dbrecipe.GetRecipe(Convert.ToInt32(recipe_id));
                         ViewBag.Recipe = recipe;
+                        ViewBag.User = neighbor;
                         return View("MakeAnOrder");
                     }
                     else

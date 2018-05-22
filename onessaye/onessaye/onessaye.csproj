@@ -167,7 +167,7 @@
     <Content Include="Views\Register\Register.cshtml" />
     <Content Include="Views\Schedule\ScheduleView.cshtml" />
     <Content Include="Views\Recipe\ModifyRecipe.cshtml" />
-    <Content Include="Views\Order\MakeAnOrder.cshtml" />
+    <Content Include="Views\Home\MakeAnOrder.cshtml" />
     <Content Include="Views\Order\LoginOrder.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
