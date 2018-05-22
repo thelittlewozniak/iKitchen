@@ -28,15 +28,14 @@ namespace onessaye.Controllers
             {
                 Cook cook = dal.GetCook(Nickname);
                 string tmp;
-                tmp = cook.Password;
-                tmp=rsa.Decryption(tmp);
-                if(cook is null)
+                
+                if (cook is null)
                 {
                     Neighbor neighbor = dal.GetNeighbor(Nickname);
                     //User is a Neighbor
                     tmp = neighbor.Password;
                     tmp = tmp = rsa.Decryption(tmp);
-                    if (rsa.Decryption(tmp) == Password)
+                    if (tmp == Password)
                     {
                         return RedirectToAction("ProfilePageNeighbor", "User", neighbor);
                     }
@@ -48,15 +47,20 @@ namespace onessaye.Controllers
                     }
                 }
                 //User is a Cook
-                else if (tmp == Password)
-                {
-                    return RedirectToAction("ProfilePageCook", "User", cook);
-                }
                 else
                 {
-                    errors.Add("The password entered is incorrect");
-                    ViewBag.Error = errors;
-                    return View("Index");
+                    tmp = cook.Password;
+                    tmp = rsa.Decryption(tmp);
+                    if (tmp == Password)
+                    {
+                        return RedirectToAction("ProfilePageCook", "User", cook);
+                    }
+                    else
+                    {
+                        errors.Add("The password entered is incorrect");
+                        ViewBag.Error = errors;
+                        return View("Index");
+                    }
                 }
             }
             catch(UnableToLogInException ex)
